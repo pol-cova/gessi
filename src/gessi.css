@@ -1,0 +1,201 @@
+:root {
+  color-scheme: light dark;
+  --gessi-bg: light-dark(#fbfaf7, #171614);
+  --gessi-surface: light-dark(#ffffff, #22201d);
+  --gessi-text: light-dark(#24211d, #f3eee7);
+  --gessi-muted: light-dark(#6d655c, #b8afa4);
+  --gessi-line: light-dark(#ded6ca, #3a352f);
+  --gessi-accent: light-dark(#b4442d, #f28b73);
+  --gessi-accent-strong: light-dark(#7f291b, #ffb19f);
+  --gessi-code: light-dark(#f2ede5, #2d2924);
+  --gessi-radius: 8px;
+  --gessi-measure: 68ch;
+  --gessi-font: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --gessi-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --gessi-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--gessi-bg);
+  color: var(--gessi-text);
+  font-family: var(--gessi-font);
+  line-height: 1.6;
+}
+
+body {
+  margin: 0 auto;
+  max-width: var(--gessi-measure);
+  padding: clamp(24px, 5vw, 64px) clamp(18px, 4vw, 32px);
+}
+
+body > header,
+body > main,
+body > footer {
+  display: block;
+}
+
+header {
+  margin-bottom: 3rem;
+}
+
+footer {
+  border-top: 1px solid var(--gessi-line);
+  color: var(--gessi-muted);
+  font-family: var(--gessi-sans);
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  padding-top: 1rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+  margin: 2.25rem 0 0.75rem;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  letter-spacing: 0;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: clamp(1.65rem, 4vw, 2.4rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p,
+ul,
+ol,
+blockquote,
+pre,
+table {
+  margin: 0 0 1.15rem;
+}
+
+a {
+  color: var(--gessi-accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--gessi-accent-strong);
+}
+
+mark {
+  background: color-mix(in srgb, var(--gessi-accent) 22%, transparent);
+  border-radius: 0.2em;
+  color: inherit;
+  padding: 0.05em 0.18em;
+}
+
+blockquote {
+  border-left: 4px solid var(--gessi-accent);
+  color: var(--gessi-muted);
+  font-size: 1.15rem;
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+code,
+kbd,
+samp {
+  background: var(--gessi-code);
+  border: 1px solid var(--gessi-line);
+  border-radius: 0.25rem;
+  font-family: var(--gessi-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.28em;
+}
+
+pre {
+  background: var(--gessi-code);
+  border: 1px solid var(--gessi-line);
+  border-radius: var(--gessi-radius);
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--gessi-line);
+  margin: 2.5rem 0;
+}
+
+img,
+svg,
+video {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: var(--gessi-sans);
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--gessi-line);
+  padding: 0.65rem 0.5rem;
+  text-align: left;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  background: var(--gessi-accent);
+  border: 0;
+  border-radius: var(--gessi-radius);
+  color: white;
+  cursor: pointer;
+  font-family: var(--gessi-sans);
+  font-weight: 700;
+  padding: 0.65rem 0.9rem;
+}
+
+input:not([type]),
+input[type="email"],
+input[type="search"],
+input[type="text"],
+textarea {
+  background: var(--gessi-surface);
+  border: 1px solid var(--gessi-line);
+  border-radius: var(--gessi-radius);
+  color: inherit;
+  display: block;
+  padding: 0.6rem 0.7rem;
+  width: 100%;
+}
+
+::selection {
+  background: var(--gessi-accent);
+  color: white;
+}
+

@@ -1,0 +1,34 @@
+{
+  "name": "gessi",
+  "version": "0.0.1",
+  "description": "A tiny style kit for expressive HTML.",
+  "type": "module",
+  "style": "dist/gessi.css",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "cp src/gessi.css dist/gessi.css",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "css",
+    "html",
+    "style-kit",
+    "stylesheet"
+  ],
+  "author": "Paul Contreras",
+  "license": "MIT",
+  "homepage": "https://github.com/pol-cova/gessi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pol-cova/gessi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pol-cova/gessi/issues"
+  }
+}
+
