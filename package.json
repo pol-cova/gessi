@@ -4,6 +4,11 @@
   "description": "A tiny style kit for expressive HTML.",
   "type": "module",
   "style": "dist/gessi.css",
+  "exports": {
+    ".": "./dist/gessi.css",
+    "./css": "./dist/gessi.css",
+    "./dist/gessi.css": "./dist/gessi.css"
+  },
   "files": [
     "dist",
     "src",
@@ -15,6 +20,11 @@
   ],
   "scripts": {
     "build": "cp src/gessi.css dist/gessi.css",
+    "pack:check": "npm run build && npm pack --dry-run",
+    "preview": "node scripts/preview.mjs",
+    "release:patch": "node scripts/release.mjs patch",
+    "release:minor": "node scripts/release.mjs minor",
+    "release:major": "node scripts/release.mjs major",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
