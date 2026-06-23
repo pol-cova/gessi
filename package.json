@@ -1,5 +1,5 @@
 {
-  "name": "gessi",
+  "name": "@pol-cova/gessi",
   "version": "0.0.1",
   "description": "A tiny style kit for expressive HTML.",
   "type": "module",
@@ -31,4 +31,3 @@
     "url": "https://github.com/pol-cova/gessi/issues"
   }
 }
-
