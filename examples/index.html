@@ -3,44 +3,227 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>gessi example</title>
+    <title>gessi component board</title>
     <link rel="stylesheet" href="../dist/gessi.css">
   </head>
-  <body>
-    <header>
-      <h1>gessi</h1>
-      <p>A tiny style kit for expressive HTML.</p>
+  <body class="gs-page">
+    <header class="gs-wrap gs-stack" style="--gs-gap: 1.25rem">
+      <p class="gs-type-kicker">expressive html kit</p>
+      <div class="gs-split">
+        <h1 class="gs-type-display">gessi</h1>
+        <div class="gs-toolbar">
+          <label class="gs-label" for="style">
+            Style
+            <select class="gs-select" id="style" name="style">
+              <option value="neo" selected>Neo</option>
+              <option value="minimal">Minimal</option>
+            </select>
+          </label>
+          <a class="gs-btn gs-ink" href="https://www.npmjs.com/package/@pol-cova/gessi">npm</a>
+        </div>
+      </div>
+      <p class="gs-type-subtitle">
+        One component API, multiple style systems.
+      </p>
     </header>
 
-    <main>
-      <h2>Write ordinary markup</h2>
-      <p>
-        Gessi styles semantic elements directly, so a page can feel considered
-        before it has a design system.
-      </p>
+    <main class="gs-wrap">
+      <section class="gs-stack" style="--gs-gap: 1.25rem">
+        <p class="gs-type-kicker">big cards</p>
 
-      <blockquote>
-        Small defaults are enough when the HTML is doing its job.
-      </blockquote>
+        <div class="gs-board" id="component-board" data-gs-style="neo">
+          <article class="gs-card gs-neo gs-paper gs-stack" style="--gs-gap: 4.5rem">
+            <span class="gs-avatar">G</span>
+            <h2 class="gs-type-title">Work with us and forget about others</h2>
+            <div class="gs-split">
+              <p><strong>Full name</strong><br><span class="gs-type-muted">23 March, 20</span></p>
+              <button class="gs-btn gs-sm gs-sun">Follow</button>
+            </div>
+          </article>
 
-      <h2>Use the CDN</h2>
-      <pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gessi/dist/gessi.css"&gt;</code></pre>
+          <article class="gs-card gs-neo gs-stack" style="--gs-gap: 0.9rem">
+            <div class="gs-cluster">
+              <span class="gs-avatar" style="--gs-size: 2rem">M</span>
+              <strong>Lamborci Mona</strong>
+            </div>
+            <div class="gs-media gs-mint">
+              <div class="gs-figure">
+                <span class="gs-person"></span>
+                <span class="gs-person" style="--gs-person: #f9f0e5; --gs-person-h: 7.8rem"></span>
+                <span class="gs-person"></span>
+              </div>
+            </div>
+            <div class="gs-split">
+              <span>□ 324</span>
+              <span>♡ 3.2k</span>
+              <span>↗</span>
+            </div>
+          </article>
 
-      <h2>Try form controls</h2>
-      <form>
-        <p>
-          <label for="email">Email</label>
-          <input id="email" type="email" placeholder="you@example.com">
-        </p>
-        <p>
-          <button type="submit">Subscribe</button>
-        </p>
-      </form>
+          <article class="gs-card gs-neo gs-sun gs-stack">
+            <div class="gs-cluster">
+              <span class="gs-avatar" style="--gs-size: 2rem">L</span>
+              <strong>Lamborci Mona</strong>
+            </div>
+            <h2 class="gs-type-title">You control your life, No one else</h2>
+            <div class="gs-split">
+              <span>□ 324</span>
+              <span>♡ 3.2k</span>
+              <span>↗</span>
+            </div>
+          </article>
+
+          <article class="gs-card gs-neo gs-tomato gs-stack">
+            <h2 class="gs-type-title">Happiness</h2>
+            <p><strong>Colorful and Beautiful life if you want.</strong></p>
+            <span class="gs-switch"></span>
+          </article>
+
+          <article class="gs-card gs-neo gs-stack">
+            <h2 class="gs-type-title">Happiness</h2>
+            <p><strong>Colorful and Beautiful life if you want.</strong></p>
+            <span class="gs-switch"></span>
+          </article>
+
+          <article class="gs-card gs-neo gs-tomato gs-stack">
+            <span class="gs-badge gs-paper">□</span>
+            <h2 class="gs-type-title">Romantic dinner night</h2>
+            <p><strong>33 March, 2020</strong></p>
+          </article>
+
+          <article class="gs-card gs-neo gs-split">
+            <p><strong>Country</strong><br><span class="gs-type-muted">City Name</span></p>
+            <strong style="font-size: 2.4rem; line-height: 1">11:30<span style="font-size: 1rem"> PM</span></strong>
+          </article>
+
+          <article class="gs-card gs-neo gs-stat">
+            <p><strong>City Name</strong><br><span class="gs-type-muted">Geo Location, 12AM</span></p>
+            <strong>85°</strong>
+          </article>
+
+          <article class="gs-card gs-neo gs-tomato gs-stack">
+            <p class="gs-type-kicker" style="color: inherit">popular</p>
+            <h2 class="gs-type-title" style="font-size: 3rem">FREE</h2>
+            <ul class="gs-list">
+              <li>Get 24x7 Support</li>
+              <li>120+ Screens</li>
+              <li>120+ Sections</li>
+            </ul>
+            <button class="gs-btn gs-ink">Love button</button>
+          </article>
+
+          <article class="gs-card gs-neo gs-sun gs-price">
+            <strong>$29</strong>
+            <span>per month</span>
+          </article>
+
+          <article class="gs-card gs-neo gs-stack" style="--gs-pad: 0">
+            <div class="gs-media gs-sun" style="--gs-h: 150px">
+              <div class="gs-figure">
+                <span class="gs-person"></span>
+                <span class="gs-person" style="--gs-person-h: 7.9rem"></span>
+                <span class="gs-person"></span>
+              </div>
+            </div>
+            <div class="gs-stack" style="--gs-gap: 0.4rem; padding: 1rem">
+              <h2 class="gs-type-title">DJ Night Hawa</h2>
+              <p class="gs-type-muted">Milkyway, Mars</p>
+              <p class="gs-type-muted">12 March, 2020</p>
+            </div>
+          </article>
+
+          <div class="gs-stack">
+            <span class="gs-bubble gs-sun">Message bubble with more than single line.</span>
+            <span class="gs-bubble gs-sun">Single Message.</span>
+          </div>
+
+          <article class="gs-card gs-neo gs-split">
+            <div>
+              <h2 class="gs-type-title">Heder Title</h2>
+              <p class="gs-type-muted"><strong>Subtitle Here</strong></p>
+            </div>
+            <button class="gs-btn gs-sm gs-tomato">›</button>
+          </article>
+
+          <article class="gs-card gs-neo gs-stack">
+            <h2 class="gs-type-title">Title of the features</h2>
+            <p class="gs-type-muted">
+              This title may have some detailed descriptions, which can go here.
+            </p>
+            <button class="gs-btn gs-ink">♥ Confirm here</button>
+          </article>
+
+          <form class="gs-card gs-neo gs-stack">
+            <h2 class="gs-type-title">Login</h2>
+            <p class="gs-type-muted">Behave like human not robot.</p>
+            <input class="gs-field" type="email" placeholder="Email">
+            <button class="gs-btn gs-blue" type="button">Facebook</button>
+            <button class="gs-btn gs-mint" type="button">Twitter</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="gs-stack" style="--gs-gap: 1.25rem; margin-top: 6rem">
+        <p class="gs-type-kicker">actions</p>
+        <div class="gs-grid">
+          <article class="gs-card gs-neo gs-stack">
+            <h2 class="gs-type-title">HTML-first actions</h2>
+            <p class="gs-type-muted">
+              Gessi styles htmx request and swap states, so interaction can stay in markup.
+            </p>
+            <div class="gs-cluster">
+              <button class="gs-btn gs-ink gs-action" id="action-demo" type="button">
+                Save changes
+                <span class="gs-spinner" aria-hidden="true"></span>
+              </button>
+              <span class="gs-chip gs-action-target" id="action-result">Ready</span>
+            </div>
+          </article>
+
+          <article class="gs-card gs-neo gs-stack">
+            <h2 class="gs-type-title">htmx shape</h2>
+            <pre><code>&lt;button class="gs-btn gs-action"
+  hx-post="/save"
+  hx-target="#status"
+  hx-swap="outerHTML transition:true"&gt;
+  Save
+&lt;/button&gt;</code></pre>
+          </article>
+        </div>
+      </section>
+
     </main>
 
-    <footer>
-      MIT licensed.
+    <footer class="gs-wrap">
+      <p>MIT licensed. Published as <code>@pol-cova/gessi</code>.</p>
     </footer>
+
+    <script>
+      const styleSelect = document.querySelector("#style");
+      const componentBoard = document.querySelector("#component-board");
+      const actionDemo = document.querySelector("#action-demo");
+      const actionResult = document.querySelector("#action-result");
+
+      styleSelect.addEventListener("change", (event) => {
+        componentBoard.dataset.gsStyle = event.target.value;
+      });
+
+      actionDemo.addEventListener("click", () => {
+        actionDemo.classList.add("htmx-request");
+        actionResult.textContent = "Saving";
+        actionResult.classList.add("htmx-swapping");
+
+        window.setTimeout(() => {
+          actionDemo.classList.remove("htmx-request");
+          actionResult.textContent = "Saved";
+          actionResult.classList.remove("htmx-swapping");
+          actionResult.classList.add("htmx-added", "htmx-settling");
+        }, 650);
+
+        window.setTimeout(() => {
+          actionResult.classList.remove("htmx-added", "htmx-settling");
+        }, 1300);
+      });
+    </script>
   </body>
 </html>
-

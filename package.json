@@ -1,6 +1,6 @@
 {
   "name": "@pol-cova/gessi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tiny style kit for expressive HTML.",
   "type": "module",
   "style": "dist/gessi.css",
@@ -8,7 +8,10 @@
     "dist",
     "src",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "SECURITY.md"
   ],
   "scripts": {
     "build": "cp src/gessi.css dist/gessi.css",
