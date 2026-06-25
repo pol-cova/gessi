@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acme Product OS</title>
+    <script type="module" src="../dist/gessi.js"></script>
+    <style>
+      :root {
+        --product-orange: #f3a712;
+        --product-blue: #2878ff;
+      }
+
+      .product-home {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+        padding: clamp(1rem, 4vw, 3rem);
+      }
+
+      .product-copy {
+        align-content: center;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .product-copy h1 {
+        font-size: clamp(2.5rem, 7vw, 5.5rem);
+        letter-spacing: -0.07em;
+        line-height: 0.88;
+        margin: 0;
+      }
+
+      .product-copy p {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        margin: 0;
+        max-width: 34rem;
+      }
+
+      .product-command {
+        background: #fffdf5;
+        border: 2px solid currentColor;
+        display: flex;
+        gap: 0.75rem;
+        justify-content: space-between;
+        padding: 0.75rem;
+      }
+
+      .product-command code {
+        background: transparent;
+        border: 0;
+        padding: 0;
+      }
+
+      .product-preview {
+        align-content: center;
+        background:
+          radial-gradient(circle, rgb(41 43 39 / 18%) 1px, transparent 1.2px) 0 0 / 8px 8px,
+          var(--product-orange);
+        border: 3px solid currentColor;
+        display: grid;
+        min-height: 22rem;
+        padding: 1.5rem;
+      }
+
+      .product-preview article {
+        background: #fffdf5;
+        border: 3px solid currentColor;
+        box-shadow: 6px 6px 0 currentColor;
+        padding: 1rem;
+      }
+
+      .product-preview strong {
+        color: var(--product-blue);
+      }
+
+      .thread {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .thread article {
+        border-bottom: 1px solid currentColor;
+        padding-bottom: 0.85rem;
+      }
+
+      .thread p {
+        margin: 0.3rem 0 0;
+      }
+
+      @media (max-width: 719px) {
+        .product-home {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="gs-page">
+    <gessi-desktop
+      menu="◆ Acme OS,Product,Pricing,Docs,Community,Company"
+      clock="09:41"
+    >
+      <gessi-icons desktop side="left">
+        <gessi-icon icon="A" label="home.mdx"></gessi-icon>
+        <gessi-icon icon="▰" label="Product OS"></gessi-icon>
+        <gessi-icon icon="$" label="Pricing"></gessi-icon>
+        <gessi-icon icon="▤" label="Docs"></gessi-icon>
+      </gessi-icons>
+
+      <gessi-icons desktop side="right">
+        <gessi-icon icon="?" label="Why Acme?"></gessi-icon>
+        <gessi-icon icon="◇" label="Changelog"></gessi-icon>
+        <gessi-icon icon="⌫" label="Trash"></gessi-icon>
+      </gessi-icons>
+
+      <gessi-window
+        title="home.mdx"
+        x="11%"
+        y="3.5rem"
+        width="76%"
+        height="38rem"
+        status="500,000+ teams are building better products"
+        active
+        no-close
+        zoomable
+      >
+        <nav slot="toolbar" aria-label="Document actions">
+          <button type="button">Undo</button>
+          <button type="button">Redo</button>
+          <a href="#start">Get started — free</a>
+        </nav>
+
+        <main class="product-home">
+          <section class="product-copy">
+            <strong>◆ Acme</strong>
+            <h1>Just ask your product.</h1>
+            <p>
+              Acme knows your product, customers, and what needs fixing. It
+              answers questions, triages work, and writes the first draft.
+            </p>
+
+            <div class="product-command" id="start">
+              <code>npx create-acme@latest</code>
+              <span>⌘ C</span>
+            </div>
+          </section>
+
+          <section class="product-preview" aria-label="Product assistant preview">
+            <article>
+              <strong>@Acme</strong>
+              <p>Three customers hit the same billing error after checkout.</p>
+              <hr>
+              <p><strong>Issue opened:</strong> Capture failed invoice state.</p>
+              <button type="button">View issue</button>
+            </article>
+          </section>
+        </main>
+      </gessi-window>
+
+      <gessi-window
+        title="Customer thread"
+        x="57%"
+        y="12rem"
+        width="27rem"
+        layer="20"
+        draggable
+        minimizable
+      >
+        <section class="thread">
+          <article>
+            <strong>Cory · 9:53 AM</strong>
+            <p>I got a billing toast after checkout. Is this a bug?</p>
+          </article>
+          <article>
+            <strong>Paul · 9:54 AM</strong>
+            <p>We should capture the exception and connect it to the user.</p>
+          </article>
+          <article>
+            <strong>Acme · 9:57 AM</strong>
+            <p>Pull request opened and linked to the customer report.</p>
+          </article>
+        </section>
+        <span slot="status">3 replies · synced</span>
+      </gessi-window>
+    </gessi-desktop>
+  </body>
+</html>

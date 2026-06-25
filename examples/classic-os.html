@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gessi Classic OS</title>
+    <script type="module" src="../dist/gessi.js"></script>
+    <style>
+      body {
+        background: #000;
+        display: grid;
+        margin: 0;
+        max-width: none;
+        min-height: 100vh;
+        padding: 0;
+        place-items: center;
+      }
+
+      gessi-desktop {
+        max-width: 100vw;
+        width: 656px;
+      }
+
+      .system-summary {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .system-summary strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .monitor {
+        background: #000;
+        border: 1px solid #000;
+        color: #fff;
+        display: grid;
+        min-height: 92px;
+        padding: 5px;
+      }
+
+      .monitor::after {
+        align-self: end;
+        border-bottom: 1px solid #fff;
+        border-left: 1px solid #fff;
+        content: "";
+        height: 45px;
+        width: 78%;
+      }
+
+      .control-grid {
+        display: grid;
+        gap: 0;
+        grid-template-columns: 1.15fr 1fr 0.7fr;
+      }
+
+      .control-grid > * {
+        border-bottom: 1px solid #000;
+        border-right: 1px solid #000;
+        min-height: 78px;
+        min-width: 0;
+        overflow: hidden;
+        padding: 7px;
+      }
+
+      .pattern {
+        background:
+          linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%) 0 0 / 4px 4px,
+          linear-gradient(45deg, #000 25%, #fff 25%, #fff 75%, #000 75%) 2px 2px / 4px 4px;
+        border: 1px solid #000;
+        height: 42px;
+      }
+
+      .volume {
+        appearance: slider-vertical;
+        height: 118px;
+        writing-mode: vertical-lr;
+      }
+
+      .chooser-list {
+        border: 1px solid #000;
+        display: grid;
+        gap: 3px;
+        min-height: 86px;
+        padding: 5px;
+      }
+
+      @media (max-width: 719px) {
+        body {
+          background: #fff;
+        }
+
+        .control-grid,
+        .system-summary {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <gessi-desktop
+      theme="classic-os"
+      background="#aeb4d8"
+      pattern="noise"
+      pattern-color="#000"
+      pattern-size="7px"
+      style="--gs-desktop-height: 440px"
+    >
+      <nav slot="menu">
+        <strong>⌘</strong>
+        <a href="#system">File</a>
+        <a href="#controls">Edit</a>
+        <a href="#controls">View</a>
+        <a href="#chooser">Special</a>
+        <a href="#help">Help</a>
+        <span class="gs-menubar-end">00:00</span>
+      </nav>
+
+      <gessi-icons desktop side="left">
+        <gessi-icon href="#system" icon="▣" label="HDD1"></gessi-icon>
+        <gessi-icon href="#chooser" icon="▥" label="Floppy A"></gessi-icon>
+        <gessi-icon href="#notes" icon="▤" label="Kernel"></gessi-icon>
+        <gessi-icon action="open:#chooser" icon="?" label="Chooser"></gessi-icon>
+      </gessi-icons>
+
+      <gessi-icons desktop side="right">
+        <gessi-icon href="#system" icon="▣" label="HDD2"></gessi-icon>
+        <gessi-icon href="#profiler" icon="⌁" label="Profiler"></gessi-icon>
+        <gessi-icon href="#notes" icon="▦" label="Jotter"></gessi-icon>
+        <gessi-icon action="open:#chooser" icon="⌫" label="Trash"></gessi-icon>
+      </gessi-icons>
+
+      <gessi-window
+        id="system"
+        title="Profiler"
+        x="19%"
+        y="56px"
+        width="292px"
+        padding="6px"
+        active
+        draggable
+        zoomable
+      >
+        <gessi-tabs>
+          <button type="button">Applications</button>
+          <button type="button">Processes</button>
+          <button type="button" active>Monitor</button>
+        </gessi-tabs>
+
+        <section class="system-summary">
+          <gessi-panel title="CPU">
+            <div class="monitor">100%</div>
+          </gessi-panel>
+
+          <gessi-panel title="Memory">
+            <div class="monitor">100%</div>
+          </gessi-panel>
+
+          <gessi-panel title="Totals">
+            <span>Apps: 3</span>
+            <span>Tasks: 7</span>
+            <span>Timers: 0</span>
+          </gessi-panel>
+
+          <gessi-panel title="RAM (KB)">
+            <span>Total: 1,088</span>
+            <span>Used: 82</span>
+            <span>Free: 1,006</span>
+          </gessi-panel>
+        </section>
+      </gessi-window>
+
+      <gessi-window
+        id="controls"
+        title="Control Panel"
+        x="43%"
+        y="24px"
+        width="352px"
+        padding="0"
+        layer="20"
+        draggable
+      >
+        <section class="control-grid">
+          <gessi-panel title="Desktop Pattern">
+            <div class="pattern" aria-label="Checkerboard desktop pattern"></div>
+            <button type="button" data-gessi-pattern="checker">Checker</button>
+            <button type="button" data-gessi-pattern="dots">Dots</button>
+            <button type="button" data-gessi-pattern="noise">Noise</button>
+          </gessi-panel>
+
+          <gessi-panel title="AppleTalk">
+            <label><input type="radio" name="network"> Connected</label>
+            <label><input type="radio" name="network" checked> Disconnected</label>
+          </gessi-panel>
+
+          <gessi-panel title="Speaker Volume">
+            <input class="volume" type="range" min="0" max="7" value="5">
+          </gessi-panel>
+
+          <gessi-panel title="Menu Blinking">
+            <label><input type="radio" name="blink"> Off</label>
+            <label><input type="radio" name="blink" checked> 2</label>
+            <label><input type="radio" name="blink"> 3</label>
+          </gessi-panel>
+
+          <gessi-panel title="Time">
+            <strong>6:27:39 PM</strong>
+            <label><input type="radio" name="clock" checked> 12hr.</label>
+            <label><input type="radio" name="clock"> 24hr.</label>
+          </gessi-panel>
+
+          <gessi-panel title="System">
+            <gessi-meter label="RAM Cache" value="74"></gessi-meter>
+          </gessi-panel>
+        </section>
+      </gessi-window>
+
+      <gessi-dialog
+        id="chooser"
+        title="Chooser"
+        width="326px"
+        hidden
+      >
+        <p>Select printer port</p>
+        <gessi-list class="chooser-list" aria-label="Printer ports">
+          <label><input type="radio" name="printer" checked> LaserWriter</label>
+          <label><input type="radio" name="printer"> ImageWriter</label>
+        </gessi-list>
+        <label>
+          User name
+          <input type="text" value="Guest">
+        </label>
+        <gessi-alert title="Printer unavailable" dismissible>
+          The selected printer is currently offline.
+        </gessi-alert>
+      </gessi-dialog>
+    </gessi-desktop>
+  </body>
+</html>

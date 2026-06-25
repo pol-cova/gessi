@@ -17,6 +17,9 @@
             <select class="gs-select" id="style" name="style">
               <option value="neo" selected>Neo</option>
               <option value="minimal">Minimal</option>
+              <option value="retro">Retro OS</option>
+              <option value="old-tech">Old-tech desk</option>
+              <option value="classic-os">Classic OS</option>
             </select>
           </label>
           <a class="gs-btn gs-ink" href="https://www.npmjs.com/package/@pol-cova/gessi">npm</a>
@@ -25,13 +28,19 @@
       <p class="gs-type-subtitle">
         One component API, multiple style systems.
       </p>
+      <nav class="gs-cluster" aria-label="Focused examples">
+        <a class="gs-chip" href="./product-os.html">Product OS</a>
+        <a class="gs-chip" href="./classic-os.html">Classic OS</a>
+        <a class="gs-chip" href="./media-os.html">Media OS</a>
+        <a class="gs-chip" href="./standalone.html">Standalone HTML</a>
+      </nav>
     </header>
 
     <main class="gs-wrap">
       <section class="gs-stack" style="--gs-gap: 1.25rem">
         <p class="gs-type-kicker">big cards</p>
 
-        <div class="gs-board" id="component-board" data-gs-style="neo">
+        <div class="gs-board" id="component-board" data-gs-preview data-gs-style="neo">
           <article class="gs-card gs-neo gs-paper gs-stack" style="--gs-gap: 4.5rem">
             <span class="gs-avatar">G</span>
             <h2 class="gs-type-title">Work with us and forget about others</h2>
@@ -164,8 +173,90 @@
       </section>
 
       <section class="gs-stack" style="--gs-gap: 1.25rem; margin-top: 6rem">
+        <div class="gs-split">
+          <div>
+            <p class="gs-type-kicker">old-tech environment</p>
+            <h2 class="gs-type-title">An OS without utility-class soup</h2>
+          </div>
+          <button class="gs-btn gs-sun" id="open-native-dialog" type="button">Open dialog</button>
+        </div>
+
+        <gessi-desktop menu="◆ Gessi OS,File,Edit,View,Window,Help" clock="09:41">
+          <gessi-icons desktop side="left">
+            <gessi-icon icon="▰" label="Files"></gessi-icon>
+            <gessi-icon icon="▤" label="Notes"></gessi-icon>
+            <gessi-icon icon="⌫" label="Trash"></gessi-icon>
+          </gessi-icons>
+
+          <gessi-icons desktop side="right">
+            <gessi-icon icon="?" label="Read me"></gessi-icon>
+            <gessi-icon icon="◇" label="Store"></gessi-icon>
+          </gessi-icons>
+
+          <gessi-window
+            title="Projects"
+            x="14%"
+            y="3rem"
+            width="48rem"
+            draggable
+            zoomable
+          >
+            <nav slot="toolbar">
+              <button type="button">←</button>
+              <button type="button">→</button>
+              <button type="button">Icons</button>
+            </nav>
+
+            <nav slot="sidebar">
+              <button class="gs-active" type="button">● Favorites</button>
+              <button type="button">⌂ Desktop</button>
+              <button type="button">▰ Projects</button>
+              <button type="button">◇ Archive</button>
+            </nav>
+
+            <gessi-icons>
+              <gessi-icon icon="A" label="Launch site"></gessi-icon>
+              <gessi-icon icon="✦" label="Campaign"></gessi-icon>
+              <gessi-icon icon="⌕" label="Research"></gessi-icon>
+              <gessi-icon icon="◆" label="Design"></gessi-icon>
+              <gessi-icon icon="¶" label="Copy deck"></gessi-icon>
+              <gessi-icon icon="▥" label="Metrics"></gessi-icon>
+            </gessi-icons>
+
+            <span slot="status">6 items · 32 MB available</span>
+          </gessi-window>
+
+          <gessi-window
+            title="System status"
+            x="45%"
+            y="19rem"
+            width="25rem"
+            status="Online ●"
+            active
+            draggable
+            minimizable
+          >
+            <fieldset class="gs-fieldset">
+              <legend>Shipping progress</legend>
+              <p><strong>Landing environment</strong></p>
+              <div class="gs-progress" aria-label="74 percent complete">
+                <span style="--gs-progress: 74%"></span>
+              </div>
+            </fieldset>
+            <p><strong>Memory:</strong> 640K OK</p>
+          </gessi-window>
+
+          <gessi-dialog id="launch-dialog" title="Confirm launch" hidden>
+            <p>Publish this environment to the open web?</p>
+            <button type="button" data-cancel>Cancel</button>
+            <button type="button">Launch</button>
+          </gessi-dialog>
+        </gessi-desktop>
+      </section>
+
+      <section class="gs-stack" style="--gs-gap: 1.25rem; margin-top: 6rem">
         <p class="gs-type-kicker">actions</p>
-        <div class="gs-grid">
+        <div class="gs-grid" data-gs-preview data-gs-style="neo">
           <article class="gs-card gs-neo gs-stack">
             <h2 class="gs-type-title">HTML-first actions</h2>
             <p class="gs-type-muted">
@@ -198,14 +289,19 @@
       <p>MIT licensed. Published as <code>@pol-cova/gessi</code>.</p>
     </footer>
 
+    <script type="module" src="../dist/gessi.js"></script>
     <script>
       const styleSelect = document.querySelector("#style");
-      const componentBoard = document.querySelector("#component-board");
+      const componentPreviews = document.querySelectorAll("[data-gs-preview]");
       const actionDemo = document.querySelector("#action-demo");
       const actionResult = document.querySelector("#action-result");
+      const openNativeDialog = document.querySelector("#open-native-dialog");
+      const launchDialog = document.querySelector("#launch-dialog");
 
       styleSelect.addEventListener("change", (event) => {
-        componentBoard.dataset.gsStyle = event.target.value;
+        componentPreviews.forEach((preview) => {
+          preview.dataset.gsStyle = event.target.value;
+        });
       });
 
       actionDemo.addEventListener("click", () => {
@@ -224,6 +320,9 @@
           actionResult.classList.remove("htmx-added", "htmx-settling");
         }, 1300);
       });
+
+      openNativeDialog.addEventListener("click", () => launchDialog.open());
+      launchDialog.querySelector("[data-cancel]").addEventListener("click", () => launchDialog.close());
     </script>
   </body>
 </html>

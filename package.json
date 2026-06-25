@@ -1,12 +1,17 @@
 {
   "name": "@pol-cova/gessi",
   "version": "0.0.2",
-  "description": "A tiny style kit for expressive HTML.",
+  "description": "A dependency-free HTML style kit and OS component system.",
   "type": "module",
   "style": "dist/gessi.css",
   "exports": {
     ".": "./dist/gessi.css",
     "./css": "./dist/gessi.css",
+    "./components": "./dist/components.js",
+    "./components.js": "./dist/components.js",
+    "./dist/components.js": "./dist/components.js",
+    "./gessi.js": "./dist/gessi.js",
+    "./dist/gessi.js": "./dist/gessi.js",
     "./dist/gessi.css": "./dist/gessi.css"
   },
   "files": [
@@ -19,7 +24,8 @@
     "SECURITY.md"
   ],
   "scripts": {
-    "build": "cp src/gessi.css dist/gessi.css",
+    "build": "cp src/gessi.css dist/gessi.css && cp src/components.js dist/components.js && cp src/gessi.js dist/gessi.js && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
+    "check": "node scripts/verify.mjs",
     "pack:check": "npm run build && npm pack --dry-run",
     "preview": "node scripts/preview.mjs",
     "release:patch": "node scripts/release.mjs patch",
@@ -31,7 +37,11 @@
     "css",
     "html",
     "style-kit",
-    "stylesheet"
+    "stylesheet",
+    "web-components",
+    "static-site",
+    "retro-ui",
+    "design-system"
   ],
   "author": "Paul Contreras",
   "license": "MIT",

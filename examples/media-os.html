@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gessi Media OS</title>
+    <script type="module" src="../dist/gessi.js"></script>
+    <style>
+      html body {
+        margin: 0;
+        max-width: none;
+        padding: 0;
+        width: auto;
+      }
+
+      .media-grid {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .media-grid gessi-media {
+        min-width: 0;
+      }
+
+      .map-layout {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr 140px;
+      }
+
+      .map-notes {
+        border-left: 1px solid currentColor;
+        padding-left: 10px;
+      }
+
+      .carousel-card {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 112px 1fr;
+        padding: 8px;
+      }
+
+      .carousel-card img {
+        width: 100%;
+      }
+
+      @media (max-width: 719px) {
+        .media-grid,
+        .map-layout,
+        .carousel-card {
+          grid-template-columns: 1fr;
+        }
+
+        .map-notes {
+          border-left: 0;
+          border-top: 1px solid currentColor;
+          padding-left: 0;
+          padding-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <gessi-desktop
+      theme="classic-os"
+      background="#c5c9ea"
+      pattern="grid"
+      pattern-color="#5a5f92"
+      pattern-size="12px"
+      style="--gs-desktop-height: 720px"
+    >
+      <nav slot="menu">
+        <strong>⌘ Media OS</strong>
+        <gessi-menu label="File">
+          <a href="#photos">Open Image Lab</a>
+          <a href="#map">Open World Map</a>
+          <button type="button">Import photo…</button>
+        </gessi-menu>
+        <a href="#photos">Photos</a>
+        <a href="#map">Map</a>
+        <a href="#stories">Stories</a>
+        <span class="gs-menubar-end">10:24</span>
+      </nav>
+
+      <gessi-window
+        id="photos"
+        title="Image Lab"
+        x="5%"
+        y="42px"
+        width="58%"
+        height="430px"
+        padding="10px"
+        active
+        draggable
+        resizable
+      >
+        <gessi-toolbar slot="toolbar" label="Desktop appearance">
+          <button data-gessi-pattern="dots">Dot desktop</button>
+          <button data-gessi-pattern="noise">Noise desktop</button>
+          <button data-gessi-background="#98d7c2">Mint desktop</button>
+          <gessi-separator orientation="vertical"></gessi-separator>
+          <gessi-tooltip text="Every effect is pure CSS and composable">
+            <button type="button">Effects?</button>
+          </gessi-tooltip>
+        </gessi-toolbar>
+
+        <section class="media-grid">
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Pixel city street"
+            effect="pixel"
+            caption="Pixel"
+            zoomable
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Monochrome city street"
+            effect="dither"
+            caption="Dither"
+            zoomable
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Halftone city street"
+            effect="halftone"
+            caption="Halftone"
+            zoomable
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Scanline city street"
+            effect="scanlines"
+            caption="Scanlines"
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Duotone city street"
+            effect="duotone"
+            caption="Duotone"
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Posterized city street"
+            effect="posterize"
+            caption="Posterize"
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Chromatic city street"
+            effect="chromatic grain"
+            caption="Chromatic + grain"
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Blueprint city street"
+            effect="blueprint scanlines"
+            caption="Blueprint + scanlines"
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Glitched city street"
+            effect="glitch crt"
+            caption="Glitch + CRT"
+          ></gessi-media>
+
+          <gessi-media
+            src="./assets/pixel-city.svg"
+            alt="Dreamy city street"
+            effect="dream comic"
+            frame="polaroid"
+            caption="Dream + comic"
+          ></gessi-media>
+        </section>
+
+        <gessi-window
+          title="Image Info"
+          x="42%"
+          y="54%"
+          width="190px"
+          height="112px"
+          padding="7px"
+          layer="30"
+          draggable
+          minimizable
+        >
+          <strong>pixel-city.svg</strong>
+          <p>320 × 200 · SVG</p>
+          <p>18 effects · composable</p>
+        </gessi-window>
+      </gessi-window>
+
+      <gessi-window
+        id="map"
+        title="World Map"
+        x="45%"
+        y="286px"
+        width="48%"
+        height="300px"
+        padding="8px"
+        layer="20"
+        draggable
+        zoomable
+      >
+        <section class="map-layout">
+          <gessi-map
+            src="./assets/world-map.png"
+            alt="Classic OS monochrome world map"
+            caption="Global network · 4 locations"
+            effect="pixel mono"
+            fit="contain"
+            style="--gs-map-height: 210px"
+          >
+            <gessi-marker x="15%" y="31%" label="San Francisco">SF</gessi-marker>
+            <gessi-marker x="48%" y="27%" label="London">LDN</gessi-marker>
+            <gessi-marker x="84%" y="37%" label="Tokyo">TYO</gessi-marker>
+            <gessi-marker x="87%" y="77%" label="Sydney">SYD</gessi-marker>
+          </gessi-map>
+
+          <aside class="map-notes">
+            <strong>Locations</strong>
+            <gessi-tree>
+              <ul>
+                <li>Americas
+                  <ul><li>San Francisco</li></ul>
+                </li>
+                <li>Europe
+                  <ul><li>London</li></ul>
+                </li>
+                <li>Asia Pacific
+                  <ul><li>Tokyo</li><li>Sydney</li></ul>
+                </li>
+              </ul>
+            </gessi-tree>
+          </aside>
+        </section>
+      </gessi-window>
+
+      <gessi-window
+        id="stories"
+        title="Featured Stories"
+        x="66%"
+        y="62px"
+        width="30%"
+        height="218px"
+        padding="0"
+        layer="25"
+        draggable
+      >
+        <gessi-carousel aria-label="Featured stories">
+          <article class="carousel-card">
+            <img src="./assets/pixel-city.svg" alt="">
+            <div>
+              <strong>City launch</strong>
+              <p>A tiny static site became a complete product desktop.</p>
+            </div>
+          </article>
+
+          <article class="carousel-card">
+            <img src="./assets/world-map.png" alt="">
+            <div>
+              <strong>Global network</strong>
+              <p>Classic OS markers remain semantic HTML over a world map.</p>
+            </div>
+          </article>
+
+          <article class="carousel-card">
+            <div>
+              <strong>Keyboard ready</strong>
+              <p>Use arrow keys to move between slides.</p>
+            </div>
+          </article>
+        </gessi-carousel>
+      </gessi-window>
+
+      <gessi-dock label="Media applications">
+        <a href="#photos" aria-label="Photos">▧</a>
+        <a href="#map" aria-label="World map">◎</a>
+        <a href="#stories" aria-label="Stories">▤</a>
+      </gessi-dock>
+
+      <gessi-toast title="Media OS ready" position="bottom-right" dismissible>
+        Images, maps, windows, menus, and navigation are active.
+      </gessi-toast>
+    </gessi-desktop>
+  </body>
+</html>
