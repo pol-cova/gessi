@@ -29,6 +29,11 @@ const requiredExamples = [
   "examples/classic-os.html",
   "examples/media-os.html",
   "examples/assets/world-map.png",
+  "docs/index.html",
+  "docs/docs.css",
+  "docs/docs.js",
+  "scripts/build-docs.mjs",
+  ".github/workflows/pages.yml",
 ];
 
 await Promise.all(requiredExamples.map((file) => access(file)));

@@ -20,5 +20,7 @@ Describe the feature.
 
 - [ ] Neo
 - [ ] Minimal
-- [ ] Both
-
+- [ ] Retro
+- [ ] Old-tech
+- [ ] Classic OS
+- [ ] Shared across themes

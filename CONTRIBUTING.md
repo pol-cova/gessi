@@ -1,31 +1,37 @@
 # Contributing to Gessi
 
-Thanks for helping improve Gessi. This project is intentionally small: a CSS
-style kit for expressive HTML with a tiny API and no required build step.
+Thanks for helping improve Gessi. It is a dependency-free CSS and Web Component
+library built around plain HTML and progressive enhancement.
+
+Read [AGENTS.md](AGENTS.md) for the architecture, public API constraints, and
+repository map.
 
 ## Development
 
-Install dependencies if needed, then work from the repo root:
+Work from the repository root:
 
 ```bash
 npm run build
+npm run check
+npm run docs:build
 ```
 
-Preview the example locally:
+Preview the documentation and examples:
 
 ```bash
-python3 -m http.server 4173
+npm run preview
 ```
 
-Open `http://localhost:4173/examples/index.html`.
+Open `http://localhost:4173/docs/`.
 
 ## CSS Guidelines
 
-- Keep class names under the `gs-` prefix.
-- Prefer composable classes over one-off component names.
+- Keep public class names under the `gs-` prefix.
+- Prefer semantic components and composable primitives over utility-class
+  proliferation.
 - Keep style systems scoped through `data-gs-style`.
-- Do not make a style system change the entire page unless the user opts into it.
-- Keep the package usable as plain CSS from a CDN.
+- Keep the package usable from a CDN in plain HTML.
+- Preserve light DOM, SSR-safe imports, and no-JavaScript readability.
 - Respect `prefers-reduced-motion` for animations.
 
 ## Pull Requests
@@ -34,6 +40,8 @@ Before opening a pull request:
 
 ```bash
 npm run build
+npm run check
+npm run docs:build
 npm pack --dry-run
 ```
 
@@ -42,4 +50,3 @@ Include screenshots or a short screen recording for visual changes.
 ## Releases
 
 Releases are published manually to npm. Do not publish from a pull request.
-

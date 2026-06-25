@@ -1,7 +1,7 @@
 {
   "name": "@pol-cova/gessi",
   "version": "0.0.2",
-  "description": "A dependency-free HTML style kit and OS component system.",
+  "description": "CSS and Web Components for expressive HTML and retro desktop interfaces.",
   "type": "module",
   "style": "dist/gessi.css",
   "exports": {
@@ -17,6 +17,7 @@
   "files": [
     "dist",
     "src",
+    "AGENTS.md",
     "README.md",
     "LICENSE",
     "CONTRIBUTING.md",
@@ -26,6 +27,7 @@
   "scripts": {
     "build": "cp src/gessi.css dist/gessi.css && cp src/components.js dist/components.js && cp src/gessi.js dist/gessi.js && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
     "check": "node scripts/verify.mjs",
+    "docs:build": "node scripts/build-docs.mjs",
     "pack:check": "npm run build && npm pack --dry-run",
     "preview": "node scripts/preview.mjs",
     "release:patch": "node scripts/release.mjs patch",
@@ -36,16 +38,18 @@
   "keywords": [
     "css",
     "html",
-    "style-kit",
-    "stylesheet",
     "web-components",
-    "static-site",
+    "plain-html",
+    "zero-dependency",
     "retro-ui",
-    "design-system"
+    "pixel-ui",
+    "desktop-ui",
+    "os-ui",
+    "component-library"
   ],
   "author": "Paul Contreras",
   "license": "MIT",
-  "homepage": "https://github.com/pol-cova/gessi#readme",
+  "homepage": "https://pol-cova.github.io/gessi/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pol-cova/gessi.git"

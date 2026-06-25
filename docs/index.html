@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Gessi documentation: dependency-free CSS and Web Components for expressive HTML, retro desktops, windows, media effects, and browser-based OS interfaces."
+    >
+    <title>Gessi — HTML style kit and OS components</title>
+    <link rel="stylesheet" href="../dist/gessi.css" data-gessi-styles>
+    <link rel="stylesheet" href="./docs.css">
+    <script type="module" src="../dist/gessi.js"></script>
+    <script type="module" src="./docs.js"></script>
+  </head>
+  <body>
+    <header class="docs-topbar">
+      <a class="docs-brand" href="#top" aria-label="Gessi documentation home">
+        <span aria-hidden="true">▰</span>
+        <strong>gessi</strong>
+        <small>docs</small>
+      </a>
+
+      <button class="docs-search-trigger" type="button" data-search-open>
+        <span>Search documentation</span>
+        <kbd>/</kbd>
+      </button>
+
+      <nav class="docs-topnav" aria-label="Project links">
+        <a href="https://www.npmjs.com/package/@pol-cova/gessi">npm</a>
+        <a href="https://github.com/pol-cova/gessi">GitHub</a>
+      </nav>
+
+      <button class="docs-mobile-search-trigger" type="button" aria-label="Search documentation" data-search-open>
+        Search
+      </button>
+
+      <button class="docs-nav-toggle" type="button" aria-label="Toggle navigation" data-nav-toggle>
+        Browse
+      </button>
+    </header>
+
+    <div class="docs-shell" id="top">
+      <aside class="docs-sidebar" data-sidebar>
+        <label class="docs-mobile-search">
+          <span>Filter pages</span>
+          <input type="search" placeholder="Window, map, media…" data-doc-filter>
+        </label>
+
+        <nav aria-label="Documentation">
+          <section>
+            <strong>Start</strong>
+            <a href="#overview">Overview</a>
+            <a href="#quick-start">Quick start</a>
+            <a href="#installation">Installation</a>
+          </section>
+          <section>
+            <strong>Design system</strong>
+            <a href="#themes">Themes</a>
+            <a href="#css-primitives">CSS primitives</a>
+            <a href="#responsive">Responsive behavior</a>
+          </section>
+          <section>
+            <strong>OS components</strong>
+            <a href="#desktop">Desktop</a>
+            <a href="#windows">Windows and dialogs</a>
+            <a href="#navigation">Menus and navigation</a>
+            <a href="#system-ui">System UI</a>
+          </section>
+          <section>
+            <strong>Media</strong>
+            <a href="#images">Image effects</a>
+            <a href="#maps">Maps and markers</a>
+            <a href="#carousel">Carousel</a>
+          </section>
+          <section>
+            <strong>Reference</strong>
+            <a href="#frameworks">Static frameworks</a>
+            <a href="#keyboard">Keyboard controls</a>
+            <a href="#showcase">Showcase</a>
+          </section>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <section class="docs-hero docs-section" id="overview" data-doc-page="overview introduction plain html cdn">
+          <div>
+            <h1>Build interfaces that feel like places.</h1>
+            <p>
+              Dependency-free CSS and Web Components for expressive HTML,
+              retro desktops, windowed applications, and complete browser-based
+              operating systems.
+            </p>
+            <div class="docs-actions">
+              <a class="docs-primary-action" href="#quick-start">Copy the quick start</a>
+              <a href="#showcase">Explore the showcase</a>
+            </div>
+          </div>
+
+          <div class="docs-hero-demo">
+            <gessi-desktop
+              theme="classic-os"
+              background="#c9cbed"
+              pattern="grid"
+              pattern-color="#7378aa"
+              style="--gs-desktop-height: 360px"
+            >
+              <nav slot="menu">
+                <strong>⌘ Gessi</strong>
+                <a href="#quick-start">File</a>
+                <a href="#themes">Style</a>
+                <span class="gs-menubar-end">10:24</span>
+              </nav>
+              <gessi-window
+                title="hello.html"
+                x="7%"
+                y="46px"
+                width="64%"
+                height="236px"
+                active
+                draggable
+              >
+                <h2>Plain HTML is the API.</h2>
+                <p>Windows, menus, media, maps, themes, and interactions are included.</p>
+                <gessi-toolbar label="Example actions">
+                  <a href="#navigation">Components</a>
+                  <a href="#images">Effects</a>
+                </gessi-toolbar>
+              </gessi-window>
+              <gessi-window
+                title="status"
+                x="58%"
+                y="196px"
+                width="34%"
+                height="105px"
+                draggable
+                layer="20"
+              >
+                <gessi-meter label="Static" value="100"></gessi-meter>
+              </gessi-window>
+            </gessi-desktop>
+          </div>
+        </section>
+
+        <section class="docs-value-strip" aria-label="Library qualities">
+          <span><strong>0</strong> dependencies</span>
+          <span><strong>1</strong> script from CDN</span>
+          <span><strong>5</strong> visual systems</span>
+          <span><strong>20+</strong> semantic components</span>
+        </section>
+
+        <nav class="docs-start-paths" aria-label="Start with Gessi">
+          <a href="#quick-start">
+            <span>Use a CDN</span>
+            <strong>Plain HTML</strong>
+            <small>Copy one script and start writing components.</small>
+          </a>
+          <a href="#installation">
+            <span>Use a package</span>
+            <strong>npm and bundlers</strong>
+            <small>Import the CSS and SSR-safe component module.</small>
+          </a>
+          <a href="#showcase">
+            <span>Learn by example</span>
+            <strong>Complete environments</strong>
+            <small>Open working Product, Classic, and Media OS pages.</small>
+          </a>
+        </nav>
+
+        <section class="docs-section" id="quick-start" data-doc-page="quick start cdn html copy">
+          <header class="docs-heading">
+            <span>01</span>
+            <div>
+              <h2>Quick start with plain HTML</h2>
+              <p>Paste one module script into any HTML file. It loads the stylesheet and registers every component.</p>
+            </div>
+          </header>
+
+          <div class="docs-code" data-copy-block>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@pol-cova/gessi/dist/gessi.js"
+&gt;&lt;/script&gt;
+
+&lt;gessi-desktop menu="◆ My OS,File,View,Help" clock="09:41"&gt;
+  &lt;gessi-window title="hello.html" width="38rem" active draggable&gt;
+    &lt;h1&gt;One script, plain HTML&lt;/h1&gt;
+    &lt;p&gt;No package manager, bundler, or framework required.&lt;/p&gt;
+  &lt;/gessi-window&gt;
+&lt;/gessi-desktop&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="docs-section" id="installation" data-doc-page="npm install package bundler">
+          <header class="docs-heading">
+            <span>02</span>
+            <div>
+              <h2>Install from npm</h2>
+              <p>Use the same CSS and native custom elements from a bundler or static-site layout.</p>
+            </div>
+          </header>
+
+          <div class="docs-two-column">
+            <div class="docs-code" data-copy-block>
+              <strong>Install</strong>
+              <button type="button" data-copy>Copy</button>
+              <pre><code>npm install @pol-cova/gessi</code></pre>
+            </div>
+            <div class="docs-code" data-copy-block>
+              <strong>Import</strong>
+              <button type="button" data-copy>Copy</button>
+              <pre><code>import "@pol-cova/gessi/css";
+import "@pol-cova/gessi/components";</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="themes" data-doc-page="themes neo minimal retro old-tech classic-os styles">
+          <header class="docs-heading">
+            <span>03</span>
+            <div>
+              <h2>Five visual systems, one HTML structure</h2>
+              <p>Switch the style attribute. Components and semantic content remain unchanged.</p>
+            </div>
+          </header>
+
+          <div class="docs-theme-controls" role="group" aria-label="Preview theme">
+            <button type="button" data-theme="neo">Neo</button>
+            <button type="button" data-theme="minimal">Minimal</button>
+            <button type="button" data-theme="retro">Retro</button>
+            <button type="button" data-theme="old-tech">Old-tech</button>
+            <button type="button" data-theme="classic-os" aria-pressed="true">Classic OS</button>
+          </div>
+
+          <div class="docs-theme-preview" data-theme-preview data-gs-style="classic-os">
+            <article class="gs-card gs-stack">
+              <span class="gs-badge gs-sun">New</span>
+              <h3>Theme the same markup</h3>
+              <p>Cards, controls, forms, and OS components share the selected visual language.</p>
+              <button class="gs-btn gs-ink" type="button">Open project</button>
+            </article>
+            <article class="gs-card gs-stack">
+              <label class="gs-label">
+                Project name
+                <input class="gs-field" value="gessi-desktop">
+              </label>
+              <div class="gs-progress" aria-label="72 percent complete">
+                <span style="--gs-progress: 72%"></span>
+              </div>
+              <div class="gs-cluster">
+                <span class="gs-chip">HTML</span>
+                <span class="gs-chip">CSS</span>
+                <span class="gs-chip">Web Components</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="docs-section" id="css-primitives" data-doc-page="css cards buttons fields layout primitives">
+          <header class="docs-heading">
+            <span>04</span>
+            <div>
+              <h2>CSS primitives</h2>
+              <p>Use the class layer for normal pages, or combine it with the OS components.</p>
+            </div>
+          </header>
+
+          <div class="docs-component-table">
+            <div><code>.gs-card</code><span>Content surface</span></div>
+            <div><code>.gs-btn</code><span>Buttons and links</span></div>
+            <div><code>.gs-field</code><span>Inputs and selects</span></div>
+            <div><code>.gs-grid</code><span>Responsive content grid</span></div>
+            <div><code>.gs-stack</code><span>Vertical rhythm</span></div>
+            <div><code>.gs-cluster</code><span>Inline control group</span></div>
+            <div><code>.gs-chip</code><span>Compact metadata</span></div>
+            <div><code>.gs-progress</code><span>Progress indicator</span></div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="desktop" data-doc-page="desktop background pattern icons os">
+          <header class="docs-heading">
+            <span>05</span>
+            <div>
+              <h2>Desktop environments</h2>
+              <p>Background patterns, semantic menus, icons, window stacking, and keyboard management are built in.</p>
+            </div>
+          </header>
+
+          <div class="docs-code" data-copy-block>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;gessi-desktop
+  theme="classic-os"
+  background="#c5c9ea"
+  pattern="grid"
+  pattern-color="#5a5f92"
+&gt;
+  &lt;nav slot="menu"&gt;
+    &lt;strong&gt;⌘ Product OS&lt;/strong&gt;
+    &lt;a href="/"&gt;File&lt;/a&gt;
+    &lt;button type="button"&gt;Help&lt;/button&gt;
+  &lt;/nav&gt;
+
+  &lt;gessi-window title="Projects" active draggable&gt;
+    Your normal HTML
+  &lt;/gessi-window&gt;
+&lt;/gessi-desktop&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="docs-section" id="windows" data-doc-page="windows dialogs draggable nested slots toolbar sidebar status">
+          <header class="docs-heading">
+            <span>06</span>
+            <div>
+              <h2>Windows and dialogs</h2>
+              <p>Generated chrome, draggable positioning, nested child windows, focus stacking, controls, slots, and dialog focus management.</p>
+            </div>
+          </header>
+
+          <div class="docs-api-grid">
+            <article>
+              <h3><code>&lt;gessi-window&gt;</code></h3>
+              <p><code>title</code> <code>x</code> <code>y</code> <code>width</code> <code>height</code> <code>draggable</code> <code>minimizable</code> <code>zoomable</code></p>
+            </article>
+            <article>
+              <h3>Content slots</h3>
+              <p><code>toolbar</code> <code>sidebar</code> <code>status</code></p>
+            </article>
+            <article>
+              <h3><code>&lt;gessi-dialog&gt;</code></h3>
+              <p><code>open()</code> and <code>close()</code>, Escape handling, focus trapping, and focus restoration.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="docs-section" id="navigation" data-doc-page="menus navigation dock toolbar breadcrumb tabs tree">
+          <header class="docs-heading">
+            <span>07</span>
+            <div>
+              <h2>Navigation and OS shell</h2>
+              <p>Small semantic components replace large stacks of utility classes.</p>
+            </div>
+          </header>
+
+          <div class="docs-component-table docs-component-table-wide">
+            <div><code>gessi-menu</code><span>Keyboard-aware native link and button menu</span></div>
+            <div><code>gessi-toolbar</code><span>Scrollable command bar</span></div>
+            <div><code>gessi-dock</code><span>Top, bottom, left, or right application dock</span></div>
+            <div><code>gessi-breadcrumb</code><span>Responsive location trail</span></div>
+            <div><code>gessi-tabs</code><span>Theme-aware tab row</span></div>
+            <div><code>gessi-tree</code><span>Nested file and navigation structure</span></div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="system-ui" data-doc-page="system ui panel meter alert toast tooltip separator list">
+          <header class="docs-heading">
+            <span>08</span>
+            <div>
+              <h2>System UI components</h2>
+              <p>Build control panels, status surfaces, notifications, and file-like interfaces out of the box.</p>
+            </div>
+          </header>
+
+          <div class="docs-system-demo" data-gs-style="classic-os">
+            <gessi-panel title="System Monitor" columns="2">
+              <gessi-meter label="CPU" value="38"></gessi-meter>
+              <gessi-meter label="Memory" value="72"></gessi-meter>
+              <gessi-alert title="Archive ready" dismissible>12 files were prepared.</gessi-alert>
+              <gessi-list aria-label="Disks">
+                <button selected>System</button>
+                <button>Archive</button>
+              </gessi-list>
+            </gessi-panel>
+          </div>
+        </section>
+
+        <section class="docs-section" id="images" data-doc-page="images photos effects pixel dither glitch crt grain media">
+          <header class="docs-heading">
+            <span>09</span>
+            <div>
+              <h2>Composable image effects</h2>
+              <p>Stack effect names without changing the original file or shipping an image-processing dependency.</p>
+            </div>
+          </header>
+
+          <div class="docs-effect-grid" data-gs-style="classic-os">
+            <gessi-media src="../examples/assets/pixel-city.svg" alt="Pixel city" effect="pixel" caption="pixel"></gessi-media>
+            <gessi-media src="../examples/assets/pixel-city.svg" alt="Dithered city" effect="dither" caption="dither"></gessi-media>
+            <gessi-media src="../examples/assets/pixel-city.svg" alt="Blueprint city" effect="blueprint scanlines" caption="blueprint + scanlines"></gessi-media>
+            <gessi-media src="../examples/assets/pixel-city.svg" alt="Glitched city" effect="glitch crt" caption="glitch + CRT"></gessi-media>
+          </div>
+
+          <div class="docs-code" data-copy-block>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;gessi-media
+  src="/photo.jpg"
+  alt="Night market"
+  effect="chromatic grain scanlines"
+  frame="polaroid"
+  aspect="4 / 3"
+  zoomable
+&gt;&lt;/gessi-media&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="docs-section" id="maps" data-doc-page="world map markers locations responsive">
+          <header class="docs-heading">
+            <span>10</span>
+            <div>
+              <h2>Maps and markers</h2>
+              <p>Use a real image or inline SVG, then place accessible percentage-based markers above it.</p>
+            </div>
+          </header>
+
+          <div class="docs-map-demo" data-gs-style="classic-os">
+            <gessi-map
+              src="../examples/assets/world-map.png"
+              alt="Pixel world map"
+              effect="pixel mono"
+              fit="contain"
+              caption="Global network"
+            >
+              <gessi-marker x="15%" y="31%" label="San Francisco">SF</gessi-marker>
+              <gessi-marker x="48%" y="27%" label="London">LDN</gessi-marker>
+              <gessi-marker x="84%" y="37%" label="Tokyo">TYO</gessi-marker>
+            </gessi-map>
+          </div>
+        </section>
+
+        <section class="docs-section" id="carousel" data-doc-page="carousel slides autoplay keyboard">
+          <header class="docs-heading">
+            <span>11</span>
+            <div>
+              <h2>Carousel</h2>
+              <p>Every direct child becomes a keyboard-accessible slide with generated themed controls.</p>
+            </div>
+          </header>
+
+          <div class="docs-code" data-copy-block>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;gessi-carousel aria-label="Featured work" autoplay="5000"&gt;
+  &lt;article&gt;First story&lt;/article&gt;
+  &lt;article&gt;Second story&lt;/article&gt;
+  &lt;article&gt;Third story&lt;/article&gt;
+&lt;/gessi-carousel&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="docs-section" id="responsive" data-doc-page="responsive mobile breakpoint layout">
+          <header class="docs-heading">
+            <span>12</span>
+            <div>
+              <h2>Responsive by default</h2>
+              <p>Below 720px, desktop composition becomes readable document flow without separate mobile markup.</p>
+            </div>
+          </header>
+
+          <ul class="docs-checklist">
+            <li>Positioned windows and child windows return to document flow.</li>
+            <li>Toolbars and docks scroll horizontally instead of compressing controls.</li>
+            <li>Sidebars collapse while primary content remains visible.</li>
+            <li>Media, maps, carousels, menus, and content grids remain fluid.</li>
+          </ul>
+        </section>
+
+        <section class="docs-section" id="frameworks" data-doc-page="astro eleventy hugo jekyll next server rendered static frameworks">
+          <header class="docs-heading">
+            <span>13</span>
+            <div>
+              <h2>Static framework recipes</h2>
+              <p>Native custom elements work in Astro, Eleventy, Hugo, Jekyll, server templates, and framework applications.</p>
+            </div>
+          </header>
+
+          <div class="docs-tabs" data-doc-tabs>
+            <div role="tablist" aria-label="Framework examples">
+              <button role="tab" aria-selected="true" data-tab="plain">Plain HTML</button>
+              <button role="tab" aria-selected="false" data-tab="astro">Astro</button>
+              <button role="tab" aria-selected="false" data-tab="static">Static generators</button>
+            </div>
+            <div role="tabpanel" data-panel="plain">
+              <pre><code>&lt;script type="module"
+  src="https://cdn.jsdelivr.net/npm/@pol-cova/gessi/dist/gessi.js"&gt;
+&lt;/script&gt;</code></pre>
+            </div>
+            <div role="tabpanel" data-panel="astro" hidden>
+              <pre><code>---
+import "@pol-cova/gessi/css";
+---
+&lt;script&gt;
+  import "@pol-cova/gessi/components";
+&lt;/script&gt;</code></pre>
+            </div>
+            <div role="tabpanel" data-panel="static" hidden>
+              <pre><code>node_modules/@pol-cova/gessi/dist/gessi.css
+node_modules/@pol-cova/gessi/dist/gessi.js</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="keyboard" data-doc-page="keyboard shortcuts accessibility focus">
+          <header class="docs-heading">
+            <span>14</span>
+            <div>
+              <h2>Keyboard controls</h2>
+              <p>Desktop interactions include keyboard window management and accessible dialog behavior.</p>
+            </div>
+          </header>
+
+          <div class="docs-shortcuts">
+            <div><kbd>F6</kbd><span>Cycle windows</span></div>
+            <div><kbd>Shift</kbd> + <kbd>F6</kbd><span>Cycle backward</span></div>
+            <div><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Arrow</kbd><span>Move active window</span></div>
+            <div><kbd>Escape</kbd><span>Close dialog or popup menu</span></div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="showcase" data-doc-page="showcase demos examples product classic media">
+          <header class="docs-heading">
+            <span>15</span>
+            <div>
+              <h2>Complete environments</h2>
+              <p>Open the examples, inspect the source, and use them as starting points.</p>
+            </div>
+          </header>
+
+          <div class="docs-showcase">
+            <a href="../examples/product-os.html">
+              <img src="../examples/product-os.png" alt="Product OS example">
+              <span><strong>Product OS</strong>Landing page as a desktop</span>
+            </a>
+            <a href="../examples/classic-os.html">
+              <img src="../examples/classic-os.png" alt="Classic OS example">
+              <span><strong>Classic OS</strong>Monochrome control panels</span>
+            </a>
+            <a href="../examples/media-os.html">
+              <img src="../examples/media-os.png" alt="Media OS example">
+              <span><strong>Media OS</strong>Effects, map, carousel, and nested windows</span>
+            </a>
+          </div>
+        </section>
+
+        <footer class="docs-footer">
+          <div>
+            <strong>Gessi</strong>
+            <p>Expressive HTML without framework lock-in or utility-class soup.</p>
+          </div>
+          <nav>
+            <a href="https://github.com/pol-cova/gessi">GitHub</a>
+            <a href="https://www.npmjs.com/package/@pol-cova/gessi">npm</a>
+            <a href="../examples/index.html">Component board</a>
+          </nav>
+        </footer>
+      </main>
+
+      <aside class="docs-toc">
+        <strong>On this page</strong>
+        <a href="#overview">Overview</a>
+        <a href="#quick-start">Quick start</a>
+        <a href="#themes">Themes</a>
+        <a href="#windows">Windows</a>
+        <a href="#images">Media effects</a>
+        <a href="#showcase">Showcase</a>
+      </aside>
+    </div>
+
+    <dialog class="docs-search-dialog" data-search-dialog>
+      <form method="dialog">
+        <label>
+          <span>Search Gessi</span>
+          <input type="search" placeholder="Try “window”, “map”, or “CDN”" data-search-input>
+        </label>
+        <button type="submit" aria-label="Close search">×</button>
+      </form>
+      <div data-search-results></div>
+    </dialog>
+  </body>
+</html>
