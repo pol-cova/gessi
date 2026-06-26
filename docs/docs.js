@@ -7,11 +7,29 @@ const sections = [...document.querySelectorAll("[data-doc-page]")].map((section)
 
 const normalize = (value) => value.trim().toLowerCase();
 
+const fallbackCopy = (text) => {
+  const fallback = document.createElement("textarea");
+  fallback.value = text;
+  fallback.setAttribute("readonly", "");
+  fallback.style.position = "fixed";
+  fallback.style.opacity = "0";
+  document.body.append(fallback);
+  fallback.select();
+  const copied = document.execCommand("copy");
+  fallback.remove();
+  return copied;
+};
+
 const copyText = async (button, text) => {
-  await navigator.clipboard.writeText(text);
+  let copied = fallbackCopy(text);
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch {}
+
   const previous = button.textContent;
-  button.textContent = "Copied";
-  button.dataset.copied = "true";
+  button.textContent = copied ? "Copied" : "Select and copy";
+  if (copied) button.dataset.copied = "true";
   window.setTimeout(() => {
     button.textContent = previous;
     delete button.dataset.copied;

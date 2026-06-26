@@ -7,6 +7,10 @@
   --docs-accent: #ffad15;
   --docs-blue: #3468e8;
   --docs-mint: #9dd9c3;
+  --docs-code-bg: #20201d;
+  --docs-code-ink: #fffaf0;
+  --docs-inline-code-bg: #e8e1d3;
+  --docs-inline-code-ink: #24241f;
   --docs-sidebar: 15.5rem;
   --docs-toc: 11rem;
 }
@@ -180,6 +184,13 @@ a {
   padding: 0 clamp(1.5rem, 5vw, 5rem);
 }
 
+.docs-main :not(pre) > code {
+  background: var(--docs-inline-code-bg);
+  border-color: rgb(36 36 31 / 45%);
+  color: var(--docs-inline-code-ink);
+  font-weight: 680;
+}
+
 .docs-toc {
   align-self: start;
   display: grid;
@@ -196,7 +207,7 @@ a {
 
 .docs-section {
   border-bottom: 1px solid rgb(29 29 26 / 25%);
-  padding: clamp(4rem, 8vw, 7rem) 0;
+  padding: clamp(3.5rem, 6vw, 5.75rem) 0;
 }
 
 .docs-hero {
@@ -332,21 +343,24 @@ a {
 }
 
 .docs-heading h2 {
-  font-size: clamp(2.2rem, 5vw, 4.8rem);
-  letter-spacing: -0.055em;
+  font-size: clamp(2.15rem, 4vw, 4rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
   margin: 0 0 0.65rem;
+  max-width: 18ch;
 }
 
 .docs-heading p {
   color: var(--docs-muted);
   font-size: 1.05rem;
+  line-height: 1.65;
   max-width: 46rem;
 }
 
 .docs-code {
-  background: #242420;
+  background: var(--docs-code-bg);
   border: 2px solid #000;
-  color: #f8f3e7;
+  color: var(--docs-code-ink);
   min-width: 0;
   padding-top: 2.5rem;
   position: relative;
@@ -374,6 +388,8 @@ a {
   background: transparent;
   border: 0;
   color: inherit;
+  font-size: 0.88rem;
+  line-height: 1.65;
   margin: 0;
   max-height: 28rem;
   padding: 1.25rem;
@@ -383,12 +399,181 @@ a {
   background: transparent;
   border: 0;
   color: inherit;
+  font-weight: 500;
 }
 
 .docs-two-column {
   display: grid;
   gap: 1rem;
   grid-template-columns: 0.8fr 1.2fr;
+}
+
+.docs-entry-points {
+  margin-top: 2rem;
+}
+
+.docs-entry-points h3 {
+  font-size: 1rem;
+  margin: 0 0 0.8rem;
+}
+
+.docs-recipe-list {
+  border-top: 2px solid var(--docs-line);
+}
+
+.docs-recipe-list > article {
+  align-items: start;
+  border-bottom: 1px solid var(--docs-line);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  padding: 2rem 0;
+}
+
+.docs-recipe-copy {
+  position: sticky;
+  top: 6rem;
+}
+
+.docs-recipe-copy h3 {
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  letter-spacing: -0.025em;
+  margin: 0 0 0.6rem;
+}
+
+.docs-recipe-copy p {
+  color: var(--docs-muted);
+  line-height: 1.6;
+  margin: 0 0 0.8rem;
+}
+
+.docs-recipe-copy a {
+  color: #214fb8;
+  font-weight: 750;
+  text-underline-offset: 0.2rem;
+}
+
+.docs-use-cases {
+  border: 2px solid var(--docs-line);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.docs-use-cases article {
+  align-content: start;
+  background: var(--docs-panel);
+  display: grid;
+  gap: 0.55rem;
+  min-height: 16rem;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.docs-use-cases article:nth-child(odd) {
+  border-right: 1px solid var(--docs-line);
+}
+
+.docs-use-cases article:nth-child(n + 3) {
+  border-top: 1px solid var(--docs-line);
+}
+
+.docs-use-cases article > span {
+  color: var(--docs-blue);
+  font-family: var(--gessi-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.docs-use-cases h3,
+.docs-patterns h3,
+.docs-ai-intro h3 {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.docs-use-cases p,
+.docs-patterns p,
+.docs-ai-intro p,
+.docs-ai-note p {
+  color: var(--docs-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.docs-use-cases article > strong {
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.docs-use-cases article > code {
+  justify-self: start;
+}
+
+.docs-use-cases article > a {
+  align-self: end;
+  color: #214fb8;
+  font-weight: 750;
+  margin-top: 0.55rem;
+  text-underline-offset: 0.2rem;
+}
+
+.docs-patterns {
+  border-top: 2px solid var(--docs-line);
+  margin-top: 3rem;
+}
+
+.docs-patterns > article {
+  align-items: start;
+  border-bottom: 1px solid var(--docs-line);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  padding: 2rem 0;
+}
+
+.docs-patterns article > div:first-child {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.docs-ai-section {
+  --docs-ai: #d9e3ff;
+}
+
+.docs-ai-intro {
+  align-items: start;
+  background: var(--docs-ai);
+  border: 2px solid var(--docs-line);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: 0.8fr 1.2fr;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.docs-ai-intro > div {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.docs-ai-intro .docs-checklist {
+  margin: 0;
+}
+
+.docs-prompt {
+  margin-top: 1rem;
+}
+
+.docs-prompt pre {
+  max-height: 46rem;
+}
+
+.docs-ai-note {
+  border: 1px solid var(--docs-line);
+  border-top: 0;
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
 }
 
 .docs-theme-controls {
@@ -473,6 +658,11 @@ a {
 
 .docs-api-grid h3 {
   margin-top: 0;
+}
+
+.docs-api-grid p {
+  color: var(--docs-muted);
+  line-height: 1.75;
 }
 
 .docs-system-demo {
@@ -828,12 +1018,32 @@ a {
   .docs-component-table,
   .docs-api-grid,
   .docs-effect-grid,
-  .docs-showcase {
+  .docs-showcase,
+  .docs-use-cases,
+  .docs-ai-intro {
     grid-template-columns: 1fr;
+  }
+
+  .docs-recipe-list > article,
+  .docs-patterns > article {
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .docs-recipe-copy {
+    position: static;
   }
 
   .docs-component-table > div:nth-child(odd) {
     border-right: 0;
+  }
+
+  .docs-use-cases article:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .docs-use-cases article:nth-child(n + 2) {
+    border-top: 1px solid var(--docs-line);
   }
 
   .docs-component-table > div:nth-child(n + 2) {
