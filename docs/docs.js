@@ -68,11 +68,17 @@ document.querySelectorAll("[data-doc-tabs]").forEach((tabs) => {
 });
 
 const sidebar = document.querySelector("[data-sidebar]");
-document.querySelector("[data-nav-toggle]")?.addEventListener("click", () => {
-  sidebar.toggleAttribute("data-open");
+const navToggle = document.querySelector("[data-nav-toggle]");
+const setSidebarOpen = (open) => {
+  sidebar.toggleAttribute("data-open", open);
+  navToggle?.setAttribute("aria-expanded", String(open));
+};
+
+navToggle?.addEventListener("click", () => {
+  setSidebarOpen(!sidebar.hasAttribute("data-open"));
 });
 sidebar.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => sidebar.removeAttribute("data-open"));
+  link.addEventListener("click", () => setSidebarOpen(false));
 });
 
 const filterNavigation = (query) => {
@@ -129,7 +135,9 @@ const openSearch = () => {
   requestAnimationFrame(() => searchInput.focus());
 };
 
-document.querySelector("[data-search-open]")?.addEventListener("click", openSearch);
+document.querySelectorAll("[data-search-open]").forEach((button) => {
+  button.addEventListener("click", openSearch);
+});
 searchInput?.addEventListener("input", (event) => renderSearch(event.target.value));
 document.addEventListener("keydown", (event) => {
   if (
