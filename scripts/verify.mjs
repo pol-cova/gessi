@@ -31,8 +31,11 @@ const requiredExamples = [
   "examples/custom-theme.html",
   "examples/assets/world-map.png",
   "docs/index.html",
+  "docs/CNAME",
   "docs/docs.css",
   "docs/docs.js",
+  "docs/llms.txt",
+  "docs/reference.md",
   "scripts/build-docs.mjs",
   ".github/workflows/pages.yml",
 ];

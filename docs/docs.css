@@ -25,6 +25,7 @@ html {
 body {
   margin: 0;
   max-width: none;
+  overflow-x: clip;
   padding: 0;
 }
 
@@ -255,6 +256,7 @@ a {
 
 .docs-hero-demo {
   min-width: 0;
+  overflow: clip;
   rotate: 0.45deg;
 }
 
@@ -292,7 +294,7 @@ a {
 .docs-start-paths {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
   padding: 2rem 0 0;
 }
 
@@ -618,8 +620,10 @@ a {
   align-items: center;
   background: var(--docs-panel);
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
+  min-width: 0;
   padding: 1rem;
 }
 
@@ -633,6 +637,7 @@ a {
 
 .docs-component-table span {
   color: var(--docs-muted);
+  overflow-wrap: anywhere;
   text-align: right;
 }
 
@@ -641,6 +646,8 @@ a {
   border: 1px solid var(--docs-line);
   color: var(--docs-ink);
   font-weight: 750;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   white-space: nowrap;
 }
 
@@ -1097,7 +1104,8 @@ a {
   .docs-component-table span {
     font-size: 0.88rem;
     line-height: 1.35;
-    max-width: 52%;
+    max-width: none;
+    text-align: left;
   }
 
   .docs-heading {
