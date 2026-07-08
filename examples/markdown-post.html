@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gessi Markdown Post Example</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../dist/gessi.css" data-gessi-styles>
+    <script type="module" src="../dist/gessi.js"></script>
+    <style>
+      body {
+        margin: 0;
+        max-width: none;
+        padding: 0;
+      }
+
+      .post-shell {
+        min-height: 100vh;
+      }
+
+      .post-window {
+        --gs-window-width: min(58rem, calc(100vw - 2rem));
+        --gs-window-x: clamp(1rem, 8vw, 7rem);
+        --gs-window-y: 4.5rem;
+      }
+
+      .post-index {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .post-index a {
+        color: inherit;
+      }
+
+      @media (max-width: 720px) {
+        .post-window {
+          --gs-window-width: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <gessi-desktop
+      class="post-shell"
+      theme="classic-os"
+      background="#c9cbed"
+      pattern="grid"
+      pattern-color="#777cae"
+    >
+      <nav slot="menu">
+        <strong>Journal OS</strong>
+        <a href="../docs/">Docs</a>
+        <a href="./index.html">Examples</a>
+        <span class="gs-menubar-end">08 Jul 2026</span>
+      </nav>
+
+      <gessi-icons position="right" interactive>
+        <gessi-icon href="../docs/#markdown" label="Markdown" icon="MD"></gessi-icon>
+        <gessi-icon href="../docs/#frameworks" label="Adapters" icon="AD"></gessi-icon>
+      </gessi-icons>
+
+      <gessi-window title="posts" x="1rem" y="4.5rem" width="13rem" draggable>
+        <nav class="post-index" aria-label="Post files">
+          <a href="#post">field-notes.md</a>
+          <a href="#notes">draft-checklist.md</a>
+          <a href="../docs/#markdown">adapter-snippets.mdx</a>
+        </nav>
+      </gessi-window>
+
+      <gessi-window class="post-window" title="field-notes.md" active draggable zoomable>
+        <gessi-toolbar slot="toolbar" label="Post actions">
+          <a href="../docs/#markdown">Markdown API</a>
+          <a href="https://github.com/pol-cova/gessi/issues/8">Issue 8</a>
+        </gessi-toolbar>
+
+        <gessi-document id="post">
+          <p class="gs-file-meta">
+            <span>content/posts/field-notes.md</span>
+            <time datetime="2026-07-08">Jul 8, 2026</time>
+            <span>6 min read</span>
+          </p>
+
+          <h1>Field Notes From a Tiny Desktop</h1>
+          <p>
+            This page shows what rendered Markdown can look like inside a
+            Gessi window. The output is still plain semantic HTML: headings,
+            paragraphs, links, lists, tables, blockquotes, code, and footnotes.
+          </p>
+
+          <div class="gs-callout">
+            <strong>Author note</strong>
+            <p>
+              Use <code>gessi-document</code> when you control the wrapper, or
+              add <code>class="gs-prose"</code> to an existing generated
+              <code>article</code>.
+            </p>
+          </div>
+
+          <h2>Why a document wrapper?</h2>
+          <p>
+            Markdown renderers differ, but their HTML vocabulary is stable.
+            Gessi styles that shared vocabulary instead of requiring a custom
+            React component or runtime parser.
+          </p>
+
+          <blockquote>
+            <p>
+              Progressive enhancement works best when the document is useful
+              before any component has upgraded.
+            </p>
+          </blockquote>
+
+          <h2 id="notes">Publishing checklist</h2>
+          <ul class="contains-task-list">
+            <li class="task-list-item"><input type="checkbox" checked disabled>Keep headings in order.</li>
+            <li class="task-list-item"><input type="checkbox" checked disabled>Use native links for navigation.</li>
+            <li class="task-list-item"><input type="checkbox" disabled>Add useful alt text to every image.</li>
+          </ul>
+
+          <h2>Package notes</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Entry</th>
+                <th>Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>@pol-cova/gessi/css</code></td>
+                <td>Styles only for generated documents.</td>
+              </tr>
+              <tr>
+                <td><code>@pol-cova/gessi/components</code></td>
+                <td>SSR-safe custom element registration.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>MDX callouts</h2>
+          <pre><code>&lt;div class="gs-callout"&gt;
+  &lt;strong&gt;Note&lt;/strong&gt;
+  &lt;p&gt;This survives as plain HTML.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+          <section class="footnotes" aria-label="Footnotes">
+            <h2>Footnotes</h2>
+            <ol>
+              <li id="fn-1">Footnotes use normal lists and links, so static HTML stays accessible.</li>
+            </ol>
+          </section>
+        </gessi-document>
+
+        <div slot="status">Ready - semantic Markdown HTML</div>
+      </gessi-window>
+    </gessi-desktop>
+  </body>
+</html>
