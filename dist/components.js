@@ -13,6 +13,14 @@ const cssLength = (value, fallback) => {
   return /^-?\d+(\.\d+)?$/.test(value) ? `${value}px` : value;
 };
 
+const safeStorage = () => {
+  try {
+    return globalThis.localStorage;
+  } catch {
+    return null;
+  }
+};
+
 const mediaFilters = {
   mono: "grayscale(1) contrast(1.25)",
   posterize: "contrast(1.8) saturate(.75) brightness(1.08)",
@@ -51,7 +59,9 @@ const makeButton = (label, symbol, action) => {
 };
 
 class GessiDesktop extends HTMLElementBase {
+  static layoutVersion = 1;
   #topLayer = 10;
+  #saveFrame = 0;
 
   connectedCallback() {
     if (this.dataset.enhanced) return;
@@ -109,6 +119,10 @@ class GessiDesktop extends HTMLElementBase {
         window.toggleAttribute("active", window === event.target);
       });
       event.target.style.setProperty("--gs-window-layer", String(++this.#topLayer));
+      this.#queueLayoutSave();
+    });
+    this.addEventListener("gs-layout-change", () => {
+      this.#queueLayoutSave();
     });
     this.addEventListener("keydown", (event) => this.#handleKeyboard(event));
     this.addEventListener("click", (event) => {
@@ -121,9 +135,90 @@ class GessiDesktop extends HTMLElementBase {
     });
 
     queueMicrotask(() => {
+      this.#restoreStoredLayout();
       const activeWindow = this.querySelector("gessi-window[active], gessi-dialog[active]");
       if (activeWindow) activeWindow.focusWindow();
     });
+  }
+
+  disconnectedCallback() {
+    if (this.#saveFrame) cancelAnimationFrame(this.#saveFrame);
+  }
+
+  serializeLayout() {
+    const windows = this.#windows();
+    return {
+      version: GessiDesktop.layoutVersion,
+      windows: windows.map((window, index) => ({
+        key: this.#windowKey(window, index),
+        id: window.id || "",
+        title: window.getAttribute("title") || "",
+        index,
+        active: window.hasAttribute("active"),
+        hidden: window.hidden,
+        maximized: window.hasAttribute("maximized"),
+        minimized: window.hasAttribute("minimized"),
+        x: window.style.getPropertyValue("--gs-window-x") || "",
+        y: window.style.getPropertyValue("--gs-window-y") || "",
+        width: window.style.getPropertyValue("--gs-window-width") || "",
+        height: window.style.getPropertyValue("--gs-window-min-height") || "",
+        layer: window.style.getPropertyValue("--gs-window-layer") || "",
+      })),
+    };
+  }
+
+  restoreLayout(layout) {
+    let state = layout;
+    if (typeof layout === "string") {
+      try {
+        state = JSON.parse(layout);
+      } catch {
+        return false;
+      }
+    }
+    if (!state || state.version !== GessiDesktop.layoutVersion || !Array.isArray(state.windows)) {
+      return false;
+    }
+
+    const before = new CustomEvent("gs-layout-restore-before", {
+      cancelable: true,
+      detail: { layout: state },
+    });
+    if (!this.dispatchEvent(before)) return false;
+
+    const windows = this.#windows();
+    let topLayer = this.#topLayer;
+    for (const item of state.windows) {
+      const window = this.#findWindow(item, windows);
+      if (!window) continue;
+      for (const [property, value] of [
+        ["--gs-window-x", item.x],
+        ["--gs-window-y", item.y],
+        ["--gs-window-width", item.width],
+        ["--gs-window-min-height", item.height],
+        ["--gs-window-layer", item.layer],
+      ]) {
+        if (typeof value === "string" && value) window.style.setProperty(property, value);
+      }
+      window.toggleAttribute("maximized", Boolean(item.maximized));
+      window.toggleAttribute("minimized", Boolean(item.minimized));
+      window.hidden = Boolean(item.hidden);
+      window.toggleAttribute("active", Boolean(item.active));
+      topLayer = Math.max(topLayer, Number(item.layer) || topLayer);
+      queueMicrotask(() => window.containWithinBounds?.());
+    }
+    this.#topLayer = topLayer;
+    this.dispatchEvent(new CustomEvent("gs-layout-restore-after", {
+      detail: { layout: this.serializeLayout() },
+    }));
+    return true;
+  }
+
+  resetLayout() {
+    const storage = safeStorage();
+    const key = this.getAttribute("storage-key");
+    if (storage && key) storage.removeItem(key);
+    this.dispatchEvent(new CustomEvent("gs-layout-reset"));
   }
 
   #handleKeyboard(event) {
@@ -162,6 +257,48 @@ class GessiDesktop extends HTMLElementBase {
       event.preventDefault();
       activeWindow.resizeBy(-step, -step);
     }
+  }
+
+  #restoreStoredLayout() {
+    const storage = safeStorage();
+    const key = this.getAttribute("storage-key");
+    if (!storage || !key) return;
+    const value = storage.getItem(key);
+    if (!value) return;
+    try {
+      this.restoreLayout(value);
+    } catch {
+      storage.removeItem(key);
+    }
+  }
+
+  #queueLayoutSave() {
+    const storage = safeStorage();
+    const key = this.getAttribute("storage-key");
+    if (!storage || !key || this.#saveFrame) return;
+    this.#saveFrame = requestAnimationFrame(() => {
+      this.#saveFrame = 0;
+      storage.setItem(key, JSON.stringify(this.serializeLayout()));
+    });
+  }
+
+  #windows() {
+    return [...this.querySelectorAll("gessi-window, gessi-dialog")];
+  }
+
+  #findWindow(item, windows) {
+    if (item.id) {
+      const found = windows.find((window) => window.id === item.id);
+      if (found) return found;
+    }
+    return windows.find((window, index) => this.#windowKey(window, index) === item.key)
+      || windows[item.index];
+  }
+
+  #windowKey(window, index) {
+    return window.id
+      ? `id:${window.id}`
+      : `index:${index}:${window.getAttribute("title") || ""}`;
   }
 }
 
@@ -265,12 +402,14 @@ class GessiWindow extends HTMLElementBase {
     this.hidden = false;
     this.focusWindow();
     this.dispatchEvent(new CustomEvent("gs-open"));
+    this.#emitLayoutChange();
   }
 
   close() {
     this.hidden = true;
     this.#returnFocus?.focus?.();
     this.dispatchEvent(new CustomEvent("gs-close"));
+    this.#emitLayoutChange();
   }
 
   moveBy(x, y) {
@@ -293,12 +432,18 @@ class GessiWindow extends HTMLElementBase {
     );
     this.style.setProperty("--gs-window-x", `${nextX}px`);
     this.style.setProperty("--gs-window-y", `${nextY}px`);
+    this.#emitLayoutChange();
   }
 
   resizeBy(width, height) {
     const rect = this.getBoundingClientRect();
     this.style.setProperty("--gs-window-width", `${Math.max(160, rect.width + width)}px`);
     this.style.setProperty("--gs-window-min-height", `${Math.max(80, rect.height + height)}px`);
+    this.#emitLayoutChange();
+  }
+
+  containWithinBounds() {
+    this.moveBy(0, 0);
   }
 
   #makeTitlebar() {
@@ -330,6 +475,7 @@ class GessiWindow extends HTMLElementBase {
     if (action === "close") this.close();
     if (action === "minimize") this.toggleAttribute("minimized");
     if (action === "zoom") this.toggleAttribute("maximized");
+    if (action !== "close") this.#emitLayoutChange();
   }
 
   #trapFocus(event) {
@@ -385,6 +531,7 @@ class GessiWindow extends HTMLElementBase {
         document.removeEventListener("pointermove", onPointerMove);
         document.removeEventListener("pointerup", onPointerUp);
         document.removeEventListener("pointercancel", onPointerUp);
+        this.#emitLayoutChange();
       };
 
       document.addEventListener("pointermove", onPointerMove);
@@ -402,6 +549,10 @@ class GessiWindow extends HTMLElementBase {
         || this.parentElement;
     }
     return this.closest("gessi-desktop, .gs-desktop");
+  }
+
+  #emitLayoutChange() {
+    this.dispatchEvent(new CustomEvent("gs-layout-change", { bubbles: true }));
   }
 }
 

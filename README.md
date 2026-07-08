@@ -55,7 +55,9 @@ import "@pol-cova/gessi/components";
 ## What is included
 
 - Five visual systems: `neo`, `minimal`, `retro`, `old-tech`, and `classic-os`.
+- A public `custom` theme token API for project-specific visual systems.
 - Desktop environments, draggable windows, nested windows, and dialogs.
+- Optional desktop layout persistence with `storage-key`.
 - Menus, toolbars, docks, breadcrumbs, tabs, trees, icons, and notifications.
 - Maps, markers, carousels, and composable image effects.
 - Responsive behavior that converts desktop layouts into readable mobile flow.
@@ -71,6 +73,7 @@ copy-ready recipes are available in the
 - [Product OS](https://pol-cova.github.io/gessi/examples/product-os.html)
 - [Classic OS](https://pol-cova.github.io/gessi/examples/classic-os.html)
 - [Media OS](https://pol-cova.github.io/gessi/examples/media-os.html)
+- [Custom Theme](https://pol-cova.github.io/gessi/examples/custom-theme.html)
 - [Plain HTML](https://pol-cova.github.io/gessi/examples/standalone.html)
 - [CSS-only fallback](https://pol-cova.github.io/gessi/examples/no-js.html)
 
