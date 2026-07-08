@@ -58,6 +58,7 @@ import "@pol-cova/gessi/components";
 - Desktop environments, draggable windows, nested windows, and dialogs.
 - Menus, toolbars, docks, breadcrumbs, tabs, trees, icons, and notifications.
 - Maps, markers, carousels, and composable image effects.
+- Markdown and MDX document styling with `gessi-document` and `.gs-prose`.
 - Responsive behavior that converts desktop layouts into readable mobile flow.
 - Light DOM, progressive enhancement, SSR-safe imports, and zero dependencies.
 - CSS primitives for cards, buttons, forms, layouts, badges, and content pages.
@@ -71,6 +72,7 @@ copy-ready recipes are available in the
 - [Product OS](https://pol-cova.github.io/gessi/examples/product-os.html)
 - [Classic OS](https://pol-cova.github.io/gessi/examples/classic-os.html)
 - [Media OS](https://pol-cova.github.io/gessi/examples/media-os.html)
+- [Markdown Post](https://pol-cova.github.io/gessi/examples/markdown-post.html)
 - [Plain HTML](https://pol-cova.github.io/gessi/examples/standalone.html)
 - [CSS-only fallback](https://pol-cova.github.io/gessi/examples/no-js.html)
 
