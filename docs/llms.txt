@@ -1,0 +1,66 @@
+# Gessi
+
+> Dependency-free CSS and native Web Components for expressive HTML, retro interfaces, browser desktops, media effects, and Markdown content.
+
+Canonical site: https://gessi.paulcontre.com/
+Package: https://www.npmjs.com/package/@pol-cova/gessi
+Repository: https://github.com/pol-cova/gessi
+
+## Start here
+
+- Human-readable reference: https://gessi.paulcontre.com/reference.md
+- Styled documentation: https://gessi.paulcontre.com/
+- Examples: https://gessi.paulcontre.com/examples/
+
+## Install
+
+Plain HTML:
+
+```html
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@pol-cova/gessi/dist/gessi.js"
+></script>
+```
+
+Bundlers and SSR:
+
+```js
+import "@pol-cova/gessi/css";
+import "@pol-cova/gessi/components";
+```
+
+## Public entry points
+
+- `@pol-cova/gessi`: package default, component module
+- `@pol-cova/gessi/css`: stylesheet only
+- `@pol-cova/gessi/components`: SSR-safe component registration
+- `@pol-cova/gessi/gessi.js`: CDN entry that loads sibling CSS
+
+## Core rules for generated code
+
+- Plain HTML is the public API.
+- Keep content semantic and in light DOM.
+- Do not add a framework runtime only to use Gessi.
+- Use native links, buttons, lists, images, headings, and form controls inside Gessi components.
+- Treat Gessi as reusable chrome and interaction. Keep project-specific layout in project CSS.
+- Import `@pol-cova/gessi/components` safely in SSR; browser registration is guarded.
+- On narrow screens, positioned desktop UI returns to readable document flow.
+
+## Main APIs
+
+- Visual systems: `neo`, `minimal`, `retro`, `old-tech`, `classic-os`, `custom`
+- Desktop: `gessi-desktop`
+- Windows: `gessi-window`, `gessi-dialog`
+- Navigation: `gessi-menu`, `gessi-toolbar`, `gessi-dock`, `gessi-breadcrumb`, `gessi-tabs`, `gessi-tree`
+- System UI: `gessi-panel`, `gessi-meter`, `gessi-alert`, `gessi-toast`, `gessi-tooltip`, `gessi-separator`, `gessi-list`
+- Media: `gessi-media`, `gessi-map`, `gessi-marker`, `gessi-carousel`
+- Markdown content: `gessi-document`, `.gs-prose`, `.gs-callout`, `.gs-file-meta`
+
+## Useful examples
+
+- Product OS: https://gessi.paulcontre.com/examples/product-os.html
+- Classic OS: https://gessi.paulcontre.com/examples/classic-os.html
+- Media OS: https://gessi.paulcontre.com/examples/media-os.html
+- Markdown post: https://gessi.paulcontre.com/examples/markdown-post.html
+- Custom theme: https://gessi.paulcontre.com/examples/custom-theme.html

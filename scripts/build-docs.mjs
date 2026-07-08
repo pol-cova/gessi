@@ -20,6 +20,9 @@ await writeFile(
 await mkdir(resolve(output, "assets"), { recursive: true });
 await cp(resolve(root, "docs/docs.css"), resolve(output, "assets/docs.css"));
 await cp(resolve(root, "docs/docs.js"), resolve(output, "assets/docs.js"));
+await cp(resolve(root, "docs/CNAME"), resolve(output, "CNAME"));
+await cp(resolve(root, "docs/llms.txt"), resolve(output, "llms.txt"));
+await cp(resolve(root, "docs/reference.md"), resolve(output, "reference.md"));
 await cp(resolve(root, "dist"), resolve(output, "dist"), { recursive: true });
 await cp(resolve(root, "examples"), resolve(output, "examples"), { recursive: true });
 await writeFile(resolve(output, ".nojekyll"), "");
