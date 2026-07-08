@@ -28,6 +28,7 @@ const requiredExamples = [
   "examples/product-os.html",
   "examples/classic-os.html",
   "examples/media-os.html",
+  "examples/custom-theme.html",
   "examples/assets/world-map.png",
   "docs/index.html",
   "docs/docs.css",

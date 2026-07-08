@@ -69,6 +69,7 @@
           <section>
             <strong>Design system</strong>
             <a href="#themes">Themes</a>
+            <a href="#custom-themes">Custom themes</a>
             <a href="#css-primitives">CSS primitives</a>
             <a href="#markdown">Markdown content</a>
             <a href="#responsive">Responsive behavior</a>
@@ -553,9 +554,15 @@ theme contrast.</code></pre>
             <button type="button" data-theme="retro">Retro</button>
             <button type="button" data-theme="old-tech">Old-tech</button>
             <button type="button" data-theme="classic-os" aria-pressed="true">Classic OS</button>
+            <button type="button" data-theme="custom">Custom</button>
           </div>
 
-          <div class="docs-theme-preview" data-theme-preview data-gs-style="classic-os">
+          <div
+            class="docs-theme-preview"
+            data-theme-preview
+            data-gs-style="classic-os"
+            style="--gs-ink: #1b1026; --gs-paper: #fff7d6; --gs-line: #1b1026; --gs-blue: #4e5cff; --gs-radius: 6px; --gs-window-bg: #fff7d6; --gs-window-title-bg: #ffd447; --gs-window-body-bg: #fffdf1; --gs-toolbar-bg: #e8ddff; --gs-control-bg: #2ee6a6; --gs-control-text: #1b1026;"
+          >
             <article class="gs-card gs-stack">
               <span class="gs-badge gs-sun">New</span>
               <h3>Theme the same markup</h3>
@@ -577,6 +584,36 @@ theme contrast.</code></pre>
               </div>
             </article>
           </div>
+
+          <div class="docs-entry-points" id="custom-themes">
+            <h3>Public custom theme tokens</h3>
+            <p>Use <code>data-gs-style="custom"</code> or <code>theme="custom"</code>, then set stable <code>--gs-*</code> tokens on the same element. These tokens are the supported customization surface for color, type, border, radius, shadows, focus, and window chrome.</p>
+            <div class="docs-component-table docs-component-table-wide">
+              <div><code>--gs-ink</code><span>Primary text and foreground color</span></div>
+              <div><code>--gs-paper</code><span>Base surface color</span></div>
+              <div><code>--gs-line</code><span>Border and keyline color</span></div>
+              <div><code>--gs-blue</code> <code>--gs-mint</code> <code>--gs-tomato</code> <code>--gs-sun</code><span>Accent palette</span></div>
+              <div><code>--gs-radius</code> <code>--gs-border-width</code><span>Radius and border scale</span></div>
+              <div><code>--gs-shadow</code> <code>--gs-shadow-sm</code><span>Surface and control elevation</span></div>
+              <div><code>--gs-window-bg</code> <code>--gs-window-title-bg</code> <code>--gs-window-body-bg</code><span>Desktop window chrome</span></div>
+              <div><code>--gs-toolbar-bg</code> <code>--gs-control-bg</code> <code>--gs-control-text</code><span>Menus, toolbars, and action controls</span></div>
+              <div><code>--gs-focus</code><span>Visible focus outline</span></div>
+            </div>
+          </div>
+
+          <div class="docs-code" data-copy-block>
+            <strong>Custom theme</strong>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;gessi-desktop
+  theme="custom"
+  style="--gs-ink: #1b1026; --gs-paper: #fff7d6; --gs-line: #1b1026;
+    --gs-window-title-bg: #ffd447; --gs-control-bg: #2ee6a6;"
+&gt;
+  &lt;gessi-window title="tokens.html" active&gt;...&lt;/gessi-window&gt;
+&lt;/gessi-desktop&gt;</code></pre>
+          </div>
+
+          <p><a href="../examples/custom-theme.html">Open the custom theme example →</a></p>
         </section>
 
         <section class="docs-section" id="css-primitives" data-doc-page="css cards buttons fields layout primitives">
@@ -710,6 +747,7 @@ const { Content, entry } = Astro.props;
             <button type="button" data-copy>Copy</button>
             <pre><code>&lt;gessi-desktop
   theme="classic-os"
+  storage-key="product-desktop-v1"
   background="#c5c9ea"
   pattern="grid"
   pattern-color="#5a5f92"
@@ -724,6 +762,33 @@ const { Content, entry } = Astro.props;
     Your normal HTML
   &lt;/gessi-window&gt;
 &lt;/gessi-desktop&gt;</code></pre>
+          </div>
+
+          <div class="docs-api-grid">
+            <article>
+              <h3>Persist layout</h3>
+              <p><code>storage-key</code> opts into localStorage persistence for position, size, layer, minimized, hidden, and active state. No storage access happens unless the attribute is present in the browser.</p>
+            </article>
+            <article>
+              <h3>Layout methods</h3>
+              <p><code>serializeLayout()</code> returns JSON-safe state, <code>restoreLayout(layout)</code> applies trusted state, and <code>resetLayout()</code> clears the stored key.</p>
+            </article>
+            <article>
+              <h3>Restore events</h3>
+              <p><code>gs-layout-restore-before</code> is cancelable. <code>gs-layout-restore-after</code> fires with the restored layout.</p>
+            </article>
+          </div>
+
+          <div class="docs-code" data-copy-block>
+            <strong>Local storage adapter</strong>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>const desktop = document.querySelector("gessi-desktop");
+const key = "my-desktop-layout";
+
+desktop.restoreLayout(localStorage.getItem(key));
+desktop.addEventListener("gs-layout-change", () =&gt; {
+  localStorage.setItem(key, JSON.stringify(desktop.serializeLayout()));
+});</code></pre>
           </div>
         </section>
 
@@ -980,6 +1045,7 @@ node_modules/@pol-cova/gessi/dist/gessi.js</code></pre>
         <a href="#use-cases">Use cases</a>
         <a href="#ai">Build with AI</a>
         <a href="#themes">Themes</a>
+        <a href="#custom-themes">Custom themes</a>
         <a href="#markdown">Markdown</a>
         <a href="#windows">Windows</a>
         <a href="#images">Media effects</a>

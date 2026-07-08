@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gessi Custom Theme Example</title>
+    <link rel="stylesheet" href="../dist/gessi.css" data-gessi-styles>
+    <script type="module" src="../dist/gessi.js"></script>
+    <script type="module">
+      const desktop = document.querySelector("gessi-desktop");
+      document.querySelector("[data-reset-layout]").addEventListener("click", () => {
+        desktop.resetLayout();
+        location.reload();
+      });
+    </script>
+    <style>
+      body {
+        margin: 0;
+        max-width: none;
+        padding: 0;
+      }
+
+      .arcade-theme {
+        --gs-ink: #1b1026;
+        --gs-paper: #fff7d6;
+        --gs-line: #1b1026;
+        --gs-blue: #4e5cff;
+        --gs-mint: #2ee6a6;
+        --gs-tomato: #ff4f7b;
+        --gs-sun: #ffd447;
+        --gs-radius: 6px;
+        --gs-border-width: 2px;
+        --gs-shadow: 6px 6px 0 #1b1026;
+        --gs-shadow-sm: 3px 3px 0 #1b1026;
+        --gs-window-bg: #fff7d6;
+        --gs-window-title-bg: #ffd447;
+        --gs-window-body-bg: #fffdf1;
+        --gs-toolbar-bg: #e8ddff;
+        --gs-control-bg: #2ee6a6;
+        --gs-control-text: #1b1026;
+        --gs-focus: #ff4f7b;
+      }
+
+      .theme-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      }
+    </style>
+  </head>
+  <body>
+    <gessi-desktop
+      class="arcade-theme"
+      theme="custom"
+      storage-key="gessi-custom-theme-demo"
+      background="#d7ccff"
+      pattern="dots"
+      pattern-color="#1b1026"
+      pattern-size="12px"
+    >
+      <nav slot="menu">
+        <strong>Token Lab</strong>
+        <a href="../docs/#custom-themes">Tokens</a>
+        <button type="button" data-reset-layout>Reset layout</button>
+      </nav>
+
+      <gessi-window title="tokens.html" x="6%" y="64px" width="38rem" active draggable minimizable zoomable>
+        <gessi-toolbar slot="toolbar" label="Theme actions">
+          <a href="../docs/#custom-themes">Token API</a>
+          <a href="../docs/#desktop">Persistence</a>
+        </gessi-toolbar>
+
+        <section class="gs-stack">
+          <p class="gs-type-kicker">Custom theme</p>
+          <h1 class="gs-type-title">Public tokens style primitives and windows.</h1>
+          <p>Move or focus the windows, reload the page, and the desktop restores the saved layout.</p>
+          <div class="theme-grid">
+            <article class="gs-card gs-stack">
+              <span class="gs-badge gs-sun">Card</span>
+              <p>Cards read color, radius, border, and shadow tokens.</p>
+            </article>
+            <gessi-panel title="Controls">
+              <label class="gs-label">Name <input class="gs-field" value="Arcade"></label>
+              <button class="gs-btn" type="button">Save</button>
+            </gessi-panel>
+          </div>
+        </section>
+      </gessi-window>
+
+      <gessi-window title="status.log" x="50%" y="170px" width="20rem" draggable>
+        <p>Layout persistence is opt-in with <code>storage-key</code>.</p>
+        <gessi-meter label="Tokens" value="86"></gessi-meter>
+      </gessi-window>
+    </gessi-desktop>
+  </body>
+</html>
