@@ -1,6 +1,6 @@
 {
   "name": "@pol-cova/gessi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CSS and Web Components for expressive HTML and retro desktop interfaces.",
   "type": "module",
   "style": "dist/gessi.css",

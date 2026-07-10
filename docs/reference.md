@@ -168,6 +168,36 @@ System UI:
 - `gessi-tooltip`
 - `gessi-separator`
 
+Content and forms:
+
+- `gessi-timeline`
+- `gessi-entry`
+- `gessi-form`
+- `gessi-load-more`
+
+## Server-Rendered Content and Forms
+
+`gessi-timeline` and `gessi-entry` provide a semantic chronological list. They
+do not fetch data: render a complete page normally and return `gessi-entry`
+fragments for an HTMX request when desired. `gessi-load-more` styles a normal
+link or button, so pagination works without JavaScript.
+
+`gessi-form` is a layout wrapper inside a real `form`. It accepts `columns`
+(default `1`) and `compact`. Keep native `label`, `input`, `select`, `textarea`,
+and `button` elements inside it; Flask actions, methods, CSRF inputs, and HTMX
+attributes are preserved.
+
+```html
+<form action="/newsletter/subscribe" method="post">
+  <gessi-form columns="2">
+    <label class="gs-label">Email
+      <input name="email" type="email" autocomplete="email" required>
+    </label>
+    <div class="gs-form-actions"><button type="submit">Subscribe</button></div>
+  </gessi-form>
+</form>
+```
+
 Media:
 
 - `gessi-media`

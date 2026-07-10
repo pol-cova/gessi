@@ -1223,6 +1223,10 @@ gessi-icons,
 gessi-icon,
 gessi-tabs,
 gessi-panel,
+gessi-timeline,
+gessi-entry,
+gessi-form,
+gessi-load-more,
 gessi-meter,
 gessi-list,
 gessi-alert,
@@ -1585,6 +1589,136 @@ button.gs-icon-action {
 
 .gs-control-panel-title {
   display: block;
+}
+
+.gs-timeline {
+  --gs-timeline-line: color-mix(in srgb, var(--gs-line) 62%, transparent);
+  display: grid;
+  gap: var(--gs-timeline-gap, 1.35rem);
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  position: relative;
+}
+
+.gs-timeline::before {
+  background: var(--gs-timeline-line);
+  content: "";
+  inset: 0 auto 0 0.55rem;
+  position: absolute;
+  width: 2px;
+}
+
+.gs-entry {
+  min-width: 0;
+  padding-left: 1.7rem;
+  position: relative;
+}
+
+.gs-entry::before {
+  background: var(--gs-fill, var(--gs-paper));
+  border: 2px solid var(--gs-line);
+  border-radius: 50%;
+  content: "";
+  height: 0.75rem;
+  left: 0.16rem;
+  position: absolute;
+  top: 0.45rem;
+  width: 0.75rem;
+}
+
+.gs-entry[status="new"]::before,
+.gs-entry[status="active"]::before {
+  background: var(--gs-tomato);
+}
+
+.gs-entry[status="done"]::before,
+.gs-entry[status="published"]::before {
+  background: var(--gs-mint);
+}
+
+.gs-entry > :first-child {
+  margin-top: 0;
+}
+
+.gs-entry > :last-child {
+  margin-bottom: 0;
+}
+
+.gs-form {
+  display: grid;
+  gap: var(--gs-form-gap, 1rem);
+  grid-template-columns: repeat(var(--gs-form-columns, 1), minmax(0, 1fr));
+  min-width: 0;
+}
+
+.gs-form > :is(form, fieldset, [data-gs-form-actions], .gs-form-actions) {
+  grid-column: 1 / -1;
+}
+
+.gs-form[data-compact] {
+  --gs-form-gap: 0.6rem;
+}
+
+.gs-form-actions {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.gs-form :is(input, textarea, select):not(.gs-field):not(.gs-select) {
+  background: #fff;
+  border: 2px solid var(--gs-line);
+  border-radius: 10px;
+  color: var(--gs-ink);
+  font: inherit;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.8rem;
+  width: 100%;
+}
+
+.gs-form textarea:not(.gs-field) {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.gs-form :is(button, input[type="submit"], input[type="button"], input[type="reset"]):not(.gs-btn) {
+  align-items: center;
+  background: var(--gs-fill, var(--gs-sun));
+  border: 2px solid var(--gs-line);
+  border-radius: 10px;
+  box-shadow: var(--gs-shadow-sm);
+  color: var(--gs-ink);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 900;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.65rem 1rem;
+  width: auto;
+}
+
+.gs-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--gs-load-more-margin, 1.5rem);
+}
+
+.gs-load-more > :is(a, button) {
+  align-items: center;
+  background: var(--gs-fill, var(--gs-sun));
+  border: 2px solid var(--gs-line);
+  border-radius: 10px;
+  box-shadow: var(--gs-shadow-sm);
+  color: var(--gs-ink);
+  display: inline-flex;
+  font-weight: 900;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.65rem 1rem;
+  text-decoration: none;
 }
 
 .gs-meter {
@@ -3114,6 +3248,10 @@ gessi-window[draggable] .gs-window-titlebar {
 gessi-alert[hidden],
 gessi-list[hidden],
 gessi-panel[hidden],
+gessi-timeline[hidden],
+gessi-entry[hidden],
+gessi-form[hidden],
+gessi-load-more[hidden],
 gessi-tabs[hidden],
 gessi-meter[hidden],
 gessi-icon[hidden],

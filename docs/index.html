@@ -840,7 +840,7 @@ desktop.addEventListener("gs-layout-change", () =&gt; {
           </div>
         </section>
 
-        <section class="docs-section" id="system-ui" data-doc-page="system ui panel meter alert toast tooltip separator list">
+        <section class="docs-section" id="system-ui" data-doc-page="system ui panel meter alert toast tooltip separator list timeline entries forms htmx flask">
           <header class="docs-heading">
             <span>12</span>
             <div>
@@ -859,6 +859,69 @@ desktop.addEventListener("gs-layout-change", () =&gt; {
                 <button>Archive</button>
               </gessi-list>
             </gessi-panel>
+          </div>
+
+          <div class="docs-api-grid">
+            <article>
+              <h3><code>&lt;gessi-timeline&gt;</code></h3>
+              <p>A semantic chronological list for posts, release notes, activity, and mail. Place each record in a <code>gessi-entry</code>.</p>
+            </article>
+            <article>
+              <h3><code>&lt;gessi-form&gt;</code></h3>
+              <p>A responsive layout wrapper for a real form. Use <code>columns</code> or <code>compact</code>; native controls and server attributes stay intact.</p>
+            </article>
+            <article>
+              <h3><code>&lt;gessi-load-more&gt;</code></h3>
+              <p>Centres a normal link or button for server pagination and optional HTMX fragment loading.</p>
+            </article>
+          </div>
+
+          <div class="docs-system-demo" data-gs-style="old-tech">
+            <gessi-timeline aria-label="Journal">
+              <gessi-entry status="published">
+                <article>
+                  <p class="gs-file-meta"><time datetime="2026-07-10">Jul 10, 2026</time><span>journal</span></p>
+                  <h3>Small HTML, complete pages</h3>
+                  <p>A journal entry can be rendered as a page or a server fragment.</p>
+                </article>
+              </gessi-entry>
+              <gessi-entry status="active">
+                <article>
+                  <p class="gs-file-meta"><time datetime="2026-07-09">Jul 9, 2026</time><span>worklog</span></p>
+                  <h3>Newsletter form is ready</h3>
+                </article>
+              </gessi-entry>
+            </gessi-timeline>
+          </div>
+
+          <div class="docs-code" data-copy-block>
+            <strong>Flask and HTMX-ready timeline + form</strong>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;gessi-timeline id="journal-feed" aria-label="Journal"&gt;
+  &lt;gessi-entry status="published"&gt;
+    &lt;article&gt;
+      &lt;p class="gs-file-meta"&gt;&lt;time datetime="2026-07-10"&gt;Jul 10&lt;/time&gt;&lt;/p&gt;
+      &lt;h2&gt;&lt;a href="/journal/a-small-web"&gt;A small web&lt;/a&gt;&lt;/h2&gt;
+      &lt;p&gt;This is ordinary server-rendered HTML.&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/gessi-entry&gt;
+&lt;/gessi-timeline&gt;
+
+&lt;gessi-load-more&gt;
+  &lt;a href="/journal?page=2" hx-get="/journal?page=2"
+     hx-target="#journal-feed" hx-swap="beforeend"&gt;Load older entries&lt;/a&gt;
+&lt;/gessi-load-more&gt;
+
+&lt;form action="/newsletter/subscribe" method="post"&gt;
+  &lt;gessi-form columns="2"&gt;
+    &lt;label class="gs-label"&gt;Email
+      &lt;input name="email" type="email" autocomplete="email" required&gt;
+    &lt;/label&gt;
+    &lt;div class="gs-form-actions"&gt;
+      &lt;button type="submit"&gt;Subscribe&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/gessi-form&gt;
+&lt;/form&gt;</code></pre>
           </div>
         </section>
 

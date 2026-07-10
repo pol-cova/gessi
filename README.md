@@ -59,6 +59,7 @@ import "@pol-cova/gessi/components";
 - Desktop environments, draggable windows, nested windows, and dialogs.
 - Optional desktop layout persistence with `storage-key`.
 - Menus, toolbars, docks, breadcrumbs, tabs, trees, icons, and notifications.
+- Timelines, entries, progressively enhanced forms, and load-more controls for server-rendered content.
 - Maps, markers, carousels, and composable image effects.
 - Markdown and MDX document styling with `gessi-document` and `.gs-prose`.
 - Responsive behavior that converts desktop layouts into readable mobile flow.

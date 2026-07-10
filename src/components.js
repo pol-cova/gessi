@@ -669,6 +669,42 @@ class GessiPanel extends HTMLElementBase {
   }
 }
 
+class GessiTimeline extends HTMLElementBase {
+  connectedCallback() {
+    if (this.dataset.enhanced) return;
+    this.dataset.enhanced = "true";
+    this.classList.add("gs-timeline");
+    this.setAttribute("role", this.getAttribute("role") || "list");
+  }
+}
+
+class GessiEntry extends HTMLElementBase {
+  connectedCallback() {
+    if (this.dataset.enhanced) return;
+    this.dataset.enhanced = "true";
+    this.classList.add("gs-entry");
+    this.setAttribute("role", this.getAttribute("role") || "listitem");
+  }
+}
+
+class GessiForm extends HTMLElementBase {
+  connectedCallback() {
+    if (this.dataset.enhanced) return;
+    this.dataset.enhanced = "true";
+    this.classList.add("gs-form");
+    this.style.setProperty("--gs-form-columns", this.getAttribute("columns") || "1");
+    if (this.hasAttribute("compact")) this.dataset.compact = "true";
+  }
+}
+
+class GessiLoadMore extends HTMLElementBase {
+  connectedCallback() {
+    if (this.dataset.enhanced) return;
+    this.dataset.enhanced = "true";
+    this.classList.add("gs-load-more");
+  }
+}
+
 class GessiMeter extends HTMLElementBase {
   connectedCallback() {
     if (this.dataset.enhanced) return;
@@ -1061,6 +1097,10 @@ if (globalThis.customElements) {
   if (!customElements.get("gessi-icons")) customElements.define("gessi-icons", GessiIcons);
   if (!customElements.get("gessi-tabs")) customElements.define("gessi-tabs", GessiTabs);
   if (!customElements.get("gessi-panel")) customElements.define("gessi-panel", GessiPanel);
+  if (!customElements.get("gessi-timeline")) customElements.define("gessi-timeline", GessiTimeline);
+  if (!customElements.get("gessi-entry")) customElements.define("gessi-entry", GessiEntry);
+  if (!customElements.get("gessi-form")) customElements.define("gessi-form", GessiForm);
+  if (!customElements.get("gessi-load-more")) customElements.define("gessi-load-more", GessiLoadMore);
   if (!customElements.get("gessi-meter")) customElements.define("gessi-meter", GessiMeter);
   if (!customElements.get("gessi-list")) customElements.define("gessi-list", GessiList);
   if (!customElements.get("gessi-alert")) customElements.define("gessi-alert", GessiAlert);
@@ -1085,6 +1125,10 @@ export {
   GessiIcons,
   GessiMeter,
   GessiPanel,
+  GessiTimeline,
+  GessiEntry,
+  GessiForm,
+  GessiLoadMore,
   GessiTabs,
   GessiWindow,
   GessiList,
