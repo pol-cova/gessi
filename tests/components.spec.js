@@ -20,7 +20,7 @@ for (const path of examples) {
   });
 }
 
-test("desktop windows stay within the viewport when dragged", async ({ page }) => {
+test("desktop windows stay within their desktop surface when dragged", async ({ page }) => {
   await page.setViewportSize({ width: 960, height: 720 });
   await page.goto("/examples/product-os.html");
   const window = page.locator("gessi-window").first();
@@ -31,12 +31,20 @@ test("desktop windows stay within the viewport when dragged", async ({ page }) =
   });
   const bounds = await window.evaluate((element) => {
     const box = element.getBoundingClientRect();
-    return { left: box.left, top: box.top, right: box.right, bottom: box.bottom };
+    const desktop = element.closest("gessi-desktop").getBoundingClientRect();
+    return {
+      left: box.left - desktop.left,
+      top: box.top - desktop.top,
+      right: box.right - desktop.left,
+      bottom: box.bottom - desktop.top,
+      width: desktop.width,
+      height: desktop.height,
+    };
   });
   expect(bounds.left).toBeGreaterThanOrEqual(0);
   expect(bounds.top).toBeGreaterThanOrEqual(0);
-  expect(bounds.right).toBeLessThanOrEqual(960);
-  expect(bounds.bottom).toBeLessThanOrEqual(720);
+  expect(bounds.right).toBeLessThanOrEqual(bounds.width);
+  expect(bounds.bottom).toBeLessThanOrEqual(bounds.height);
 });
 
 test("media effects and carousel controls are available", async ({ page }) => {
