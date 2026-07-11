@@ -3,8 +3,9 @@ import { expect, test } from "@playwright/test";
 test("interactive components expose native accessible controls", async ({ page }) => {
   await page.goto("/examples/classic-os.html");
   await expect(page.getByRole("button", { name: "Close" }).first()).toBeVisible();
-  await expect(page.getByRole("toolbar").first()).toBeVisible();
   await expect(page.getByRole("progressbar").first()).toHaveAttribute("aria-valuenow");
+  await page.goto("/examples/media-os.html");
+  await expect(page.getByRole("toolbar", { name: "Desktop appearance" })).toBeVisible();
 });
 
 test("menu, carousel, and desktop keyboard interactions remain reachable", async ({ page }) => {
@@ -44,6 +45,6 @@ test.describe("without JavaScript", () => {
 
   test("content remains visible", async ({ page }) => {
     await page.goto("/examples/no-js.html");
-    await expect(page.locator("main")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "The content remains available" })).toBeVisible();
   });
 });
