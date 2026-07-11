@@ -168,6 +168,12 @@ a { color: inherit; }
 
 .docs-section { border-bottom: 1px solid var(--docs-line); padding: clamp(3.75rem, 7vw, 6.5rem) 0; }
 
+.docs-icon-library { border: 1px solid var(--docs-line); border-radius: .45rem; display: grid; gap: 1.5rem; grid-template-columns: minmax(12rem, .8fr) minmax(16rem, 1.2fr); margin: 1.5rem 0; padding: 1.25rem; }
+.docs-icon-library h3 { font-size: 1rem; margin: 0; }
+.docs-icon-library p { color: var(--docs-muted); font-size: .82rem; line-height: 1.55; margin: .55rem 0 0; }
+.docs-icon-gallery { display: grid; gap: .5rem; grid-template-columns: repeat(5, 1fr); }
+.docs-icon-gallery img { background: #f4f4f5; border: 1px solid var(--docs-line); height: 100%; image-rendering: pixelated; max-width: 100%; padding: .45rem; width: 100%; }
+
 .docs-hero {
   align-items: center;
   display: grid;

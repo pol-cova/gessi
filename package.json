@@ -12,7 +12,8 @@
     "./dist/components.js": "./dist/components.js",
     "./gessi.js": "./dist/gessi.js",
     "./dist/gessi.js": "./dist/gessi.js",
-    "./dist/gessi.css": "./dist/gessi.css"
+    "./dist/gessi.css": "./dist/gessi.css",
+    "./icons/*": "./dist/icons/*"
   },
   "files": [
     "dist",
@@ -25,7 +26,7 @@
     "SECURITY.md"
   ],
   "scripts": {
-    "build": "cp src/gessi.css dist/gessi.css && cp src/components.js dist/components.js && cp src/gessi.js dist/gessi.js && mkdir -p dist/fonts && cp src/fonts/* dist/fonts/",
+    "build": "cp src/gessi.css dist/gessi.css && cp src/components.js dist/components.js && cp src/gessi.js dist/gessi.js && mkdir -p dist/fonts dist/icons && cp src/fonts/* dist/fonts/ && cp src/icons/* dist/icons/",
     "check": "node scripts/verify.mjs",
     "docs:build": "node scripts/build-docs.mjs",
     "pack:check": "npm run build && npm pack --dry-run",
