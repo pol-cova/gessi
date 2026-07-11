@@ -1,4 +1,4 @@
-import { access, readFile } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 
 const pairs = [
   ["src/gessi.css", "dist/gessi.css"],
@@ -20,6 +20,15 @@ for (const [source, built] of pairs) {
     throw new Error(`${built} is stale. Run npm run build.`);
   }
 }
+
+const icons = await readdir("src/icons");
+await Promise.all(icons.map(async (icon) => {
+  const [source, built] = await Promise.all([
+    readFile(`src/icons/${icon}`),
+    readFile(`dist/icons/${icon}`),
+  ]);
+  if (!source.equals(built)) throw new Error(`dist/icons/${icon} is stale. Run npm run build.`);
+}));
 
 const requiredExamples = [
   "examples/index.html",

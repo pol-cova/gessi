@@ -172,3 +172,48 @@ const observer = new IntersectionObserver((entries) => {
   threshold: [0, 0.2, 0.6],
 });
 observedSections.forEach((section) => observer.observe(section));
+
+const escapeMarkup = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+document.querySelectorAll("[data-playground]").forEach((playground) => {
+  const form = playground.querySelector("[data-playground-controls]");
+  const preview = playground.querySelector("[data-playground-preview]");
+  const code = playground.querySelector("[data-playground-code] code");
+  let active = "window";
+
+  const value = (name) => form.elements[name].value;
+  const checked = (name) => form.elements[name].checked;
+  const snippetFor = () => {
+    if (active === "window") {
+      const controls = `${checked("window-minimizable") ? " minimizable" : ""}${checked("window-zoomable") ? " zoomable" : ""}`;
+      return `<div data-gs-style="${value("window-theme")}">\n  <gessi-window title="${escapeMarkup(value("window-title"))}" active${controls}\n    style="--gs-window-width: ${value("window-width")}"\n  >\n    <p>Your normal HTML goes here.</p>\n  </gessi-window>\n</div>`;
+    }
+    if (active === "media") {
+      return `<div data-gs-style="${value("media-theme")}">\n  <gessi-media\n    src="/image.jpg"\n    alt="Describe the image"\n    effect="${value("media-effect")}"\n    frame="${value("media-frame")}"\n    aspect="${value("media-aspect")}"\n    fit="${value("media-fit")}"\n  ></gessi-media>\n</div>`;
+    }
+    const icons = checked("desktop-icons")
+      ? "\n  <gessi-icons desktop>\n    <gessi-icon icon=\"◇\" label=\"Projects\"></gessi-icon>\n    <gessi-icon icon=\"◆\" label=\"Archive\"></gessi-icon>\n  </gessi-icons>"
+      : "";
+    return `<gessi-desktop\n  theme="${value("desktop-theme")}"\n  background="${value("desktop-background")}"\n  pattern="${value("desktop-pattern")}"\n  pattern-color="${value("desktop-pattern-color")}"\n  menu="${escapeMarkup(value("desktop-menu"))}"\n>${icons}\n  <gessi-window title="Welcome" active>\n    Your normal HTML goes here.\n  </gessi-window>\n</gessi-desktop>`;
+  };
+  const render = () => {
+    const snippet = snippetFor();
+    preview.innerHTML = snippet;
+    code.textContent = snippet;
+  };
+  playground.querySelectorAll("[data-playground-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      active = button.dataset.playgroundTab;
+      playground.querySelectorAll("[data-playground-tab]").forEach((candidate) => {
+        candidate.setAttribute("aria-selected", String(candidate === button));
+      });
+      playground.querySelectorAll("[data-playground-panel]").forEach((panel) => {
+        panel.hidden = panel.dataset.playgroundPanel !== active;
+      });
+      render();
+    });
+  });
+  form.addEventListener("input", render);
+  form.addEventListener("change", render);
+  render();
+});
