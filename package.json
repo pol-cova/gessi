@@ -28,6 +28,8 @@
   "scripts": {
     "build": "cp src/gessi.css dist/gessi.css && cp src/components.js dist/components.js && cp src/gessi.js dist/gessi.js && mkdir -p dist/fonts dist/icons && cp src/fonts/* dist/fonts/ && cp src/icons/* dist/icons/",
     "check": "node scripts/verify.mjs",
+    "test:components": "playwright test tests/components.spec.js",
+    "test:visual": "playwright test tests/visual.spec.js",
     "docs:build": "node scripts/build-docs.mjs",
     "pack:check": "npm run build && npm pack --dry-run",
     "preview": "node scripts/preview.mjs",
@@ -57,5 +59,8 @@
   },
   "bugs": {
     "url": "https://github.com/pol-cova/gessi/issues"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
   }
 }
