@@ -783,6 +783,26 @@ const { Content, entry } = Astro.props;
             </article>
           </div>
 
+          <section class="docs-icon-library" aria-labelledby="pixel-icons-title">
+            <div>
+              <h3 id="pixel-icons-title">Pixel icon library</h3>
+              <p>Fifteen original 32px SVGs ship in <code>@pol-cova/gessi/icons</code>. Use <code>gessi-icon</code> for a decorative desktop glyph, or give a normal <code>&lt;img&gt;</code> useful alternative text when the icon conveys information.</p>
+            </div>
+            <div class="docs-icon-gallery" aria-label="Gessi pixel icons">
+              <img src="../dist/icons/folder.svg" alt="Folder"><img src="../dist/icons/document.svg" alt="Document"><img src="../dist/icons/image.svg" alt="Image"><img src="../dist/icons/computer.svg" alt="Computer"><img src="../dist/icons/disk.svg" alt="Disk"><img src="../dist/icons/trash.svg" alt="Trash"><img src="../dist/icons/settings.svg" alt="Settings"><img src="../dist/icons/help.svg" alt="Help"><img src="../dist/icons/mail.svg" alt="Mail"><img src="../dist/icons/globe.svg" alt="Globe"><img src="../dist/icons/map.svg" alt="Map"><img src="../dist/icons/music.svg" alt="Music"><img src="../dist/icons/search.svg" alt="Search"><img src="../dist/icons/home.svg" alt="Home"><img src="../dist/icons/warning.svg" alt="Warning">
+            </div>
+          </section>
+
+          <div class="docs-code" data-copy-block>
+            <strong>Decorative and meaningful icons</strong>
+            <button type="button" data-copy>Copy</button>
+            <pre><code>&lt;!-- Decorative: the text label is the accessible name. --&gt;
+&lt;gessi-icon src="./node_modules/@pol-cova/gessi/dist/icons/folder.svg" label="Projects"&gt;&lt;/gessi-icon&gt;
+
+&lt;!-- Meaningful: use a native image and describe its purpose. --&gt;
+&lt;img src="./node_modules/@pol-cova/gessi/dist/icons/warning.svg" alt="Warning: unsaved changes"&gt;</code></pre>
+          </div>
+
           <div class="docs-code" data-copy-block>
             <strong>Local storage adapter</strong>
             <button type="button" data-copy>Copy</button>
