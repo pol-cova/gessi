@@ -223,6 +223,16 @@ Effects compose by space-separated name.
 
 ## Static Frameworks
 
+## Accessibility support matrix
+
+Gessi's interactive components are covered in Chromium, Firefox, and WebKit.
+Keyboard coverage includes menus, tabs, carousels, dialogs, desktop window
+cycling, generated controls, reduced-motion styles, and no-JavaScript content.
+Use current versions of VoiceOver with Safari, NVDA with Firefox or Chrome, and
+JAWS with Chrome or Edge for manual screen-reader verification. Screen readers
+and browsers update independently, so test the combinations used by your
+audience before releasing an application.
+
 Astro:
 
 ```astro

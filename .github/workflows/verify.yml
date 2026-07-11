@@ -47,6 +47,9 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Run accessibility and keyboard coverage
+        run: npm run test:a11y
+
       - name: Run component browser matrix
         run: npm run test:components
 
