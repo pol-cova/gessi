@@ -55,6 +55,16 @@ html {
   line-height: 1.6;
 }
 
+html:has(gessi-desktop) {
+  background: light-dark(#111, #000);
+}
+
+body:has(> gessi-desktop) {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+}
+
 body {
   margin: 0 auto;
   max-width: var(--gessi-measure);
@@ -567,7 +577,7 @@ textarea {
   box-shadow: var(--gs-shadow);
 }
 
-[data-gs-style="minimal"] {
+:is([data-gs-style="minimal"], gessi-desktop[theme="minimal"]:not([data-enhanced])) {
   --gs-ink: #1d1d1f;
   --gs-paper: #fff;
   --gs-tomato: #f5f5f7;
@@ -716,7 +726,7 @@ textarea {
   color: #0066cc;
 }
 
-[data-gs-style="custom"] {
+:is([data-gs-style="custom"], gessi-desktop[theme="custom"]:not([data-enhanced])) {
   color: var(--gs-ink);
   font-family: var(--gessi-sans);
 }
@@ -744,7 +754,7 @@ textarea {
   color: var(--gs-ink);
 }
 
-[data-gs-style="custom"] .gs-desktop {
+:is([data-gs-style="custom"] .gs-desktop, gessi-desktop[theme="custom"]:not([data-enhanced])) {
   background: var(--gs-desktop-color, var(--gs-paper));
   border: var(--gs-border-width) solid var(--gs-line);
   color: var(--gs-ink);
@@ -791,7 +801,7 @@ textarea {
   outline-offset: 2px;
 }
 
-[data-gs-style="retro"] {
+:is([data-gs-style="retro"], gessi-desktop[theme="retro"]:not([data-enhanced])) {
   --gs-ink: #101010;
   --gs-paper: #f4f3ee;
   --gs-tomato: #e81123;
@@ -998,7 +1008,7 @@ textarea {
   font-size: 0.65em;
 }
 
-[data-gs-style="old-tech"] {
+:is([data-gs-style="old-tech"], gessi-desktop[theme="old-tech"]:not([data-enhanced])) {
   --gs-ink: #292b27;
   --gs-paper: #f6eddd;
   --gs-tomato: #ee6846;
@@ -1253,6 +1263,9 @@ gessi-desktop:not([data-enhanced]) {
   --gs-ink: #292b27;
   --gs-paper: #f6eddd;
   --gs-line: #292b27;
+  --gs-desktop-color: var(--gs-paper);
+  --gs-pattern-color: var(--gs-line);
+  --gs-pattern-size: 6px;
   background:
     radial-gradient(circle, rgb(41 43 39 / 18%) 0 0.7px, transparent 0.9px) 0 0 / 4px 4px,
     var(--gs-paper);
@@ -1261,6 +1274,32 @@ gessi-desktop:not([data-enhanced]) {
   display: grid;
   gap: 1rem;
   padding: 1rem;
+}
+
+gessi-desktop[background]:not([data-enhanced]) {
+  --gs-desktop-color: attr(background type(<color>));
+}
+
+gessi-desktop[pattern-color]:not([data-enhanced]) {
+  --gs-pattern-color: attr(pattern-color type(<color>));
+}
+
+gessi-desktop[pattern-size]:not([data-enhanced]) {
+  --gs-pattern-size: attr(pattern-size type(<length>));
+}
+
+gessi-desktop[theme="classic-os"]:not([data-enhanced]):not([background]) {
+  --gs-desktop-color: #fff;
+}
+
+gessi-desktop[theme]:not([data-enhanced]):not([background]):not([theme="classic-os"]) {
+  --gs-desktop-color: #9edbd2;
+}
+
+gessi-desktop[theme="classic-os"]:not([data-enhanced]) {
+  border: 0;
+  color: #000;
+  min-height: var(--gs-desktop-height, 32rem);
 }
 
 gessi-window:not([data-enhanced]),
@@ -2308,11 +2347,16 @@ button.gs-icon-action {
   --gs-pattern-size: 6px;
 }
 
-[data-gs-style].gs-desktop[data-pattern="solid"] {
+gessi-desktop[theme]:not([data-enhanced]) {
+  --gs-pattern-color: var(--gs-line, #000);
+  --gs-pattern-size: 6px;
+}
+
+:is([data-gs-style].gs-desktop[data-pattern="solid"], gessi-desktop[theme]:not([data-enhanced])[pattern="solid"]) {
   background: var(--gs-desktop-color);
 }
 
-[data-gs-style].gs-desktop[data-pattern="checker"] {
+:is([data-gs-style].gs-desktop[data-pattern="checker"], gessi-desktop[theme]:not([data-enhanced])[pattern="checker"]) {
   background:
     linear-gradient(
       45deg,
@@ -2329,7 +2373,7 @@ button.gs-icon-action {
       var(--gs-pattern-size) var(--gs-pattern-size);
 }
 
-[data-gs-style].gs-desktop[data-pattern="dots"] {
+:is([data-gs-style].gs-desktop[data-pattern="dots"], gessi-desktop[theme]:not([data-enhanced])[pattern="dots"]) {
   background:
     radial-gradient(
       circle,
@@ -2339,7 +2383,7 @@ button.gs-icon-action {
     var(--gs-desktop-color);
 }
 
-[data-gs-style].gs-desktop[data-pattern="grid"] {
+:is([data-gs-style].gs-desktop[data-pattern="grid"], gessi-desktop[theme]:not([data-enhanced])[pattern="grid"]) {
   background:
     linear-gradient(var(--gs-pattern-color) 1px, transparent 1px) 0 0 /
       var(--gs-pattern-size) var(--gs-pattern-size),
@@ -2348,7 +2392,7 @@ button.gs-icon-action {
     var(--gs-desktop-color);
 }
 
-[data-gs-style].gs-desktop[data-pattern="stripes"] {
+:is([data-gs-style].gs-desktop[data-pattern="stripes"], gessi-desktop[theme]:not([data-enhanced])[pattern="stripes"]) {
   background:
     repeating-linear-gradient(
       135deg,
@@ -2358,7 +2402,7 @@ button.gs-icon-action {
     );
 }
 
-[data-gs-style].gs-desktop[data-pattern="noise"] {
+:is([data-gs-style].gs-desktop[data-pattern="noise"], gessi-desktop[theme]:not([data-enhanced])[pattern="noise"]) {
   background:
     radial-gradient(circle at 20% 20%, var(--gs-pattern-color) 0 1px, transparent 1px),
     radial-gradient(circle at 75% 35%, var(--gs-pattern-color) 0 1px, transparent 1px),
@@ -2371,7 +2415,7 @@ button.gs-icon-action {
     auto;
 }
 
-[data-gs-style].gs-desktop[data-pattern="crosshatch"] {
+:is([data-gs-style].gs-desktop[data-pattern="crosshatch"], gessi-desktop[theme]:not([data-enhanced])[pattern="crosshatch"]) {
   background:
     repeating-linear-gradient(
       45deg,
@@ -2388,7 +2432,18 @@ button.gs-icon-action {
     var(--gs-desktop-color);
 }
 
-[data-gs-style="old-tech"] .gs-desktop {
+gessi-desktop[theme]:not([data-enhanced]):not([pattern]):not([theme="classic-os"]):not([theme="old-tech"]) {
+  background:
+    radial-gradient(
+      circle,
+      var(--gs-pattern-color) 0 1px,
+      transparent 1.2px
+    ) 0 0 / var(--gs-pattern-size) var(--gs-pattern-size),
+    var(--gs-desktop-color);
+  border: 0;
+}
+
+:is([data-gs-style="old-tech"] .gs-desktop, gessi-desktop[theme="old-tech"]:not([data-enhanced])) {
   background:
     radial-gradient(circle, rgb(41 43 39 / 22%) 0 0.7px, transparent 0.9px) 0 0 / 4px 4px,
     var(--gs-paper);
@@ -2711,7 +2766,7 @@ gessi-window[draggable] .gs-window-titlebar {
   min-height: 2rem;
 }
 
-[data-gs-style="classic-os"] {
+:is([data-gs-style="classic-os"], gessi-desktop[theme="classic-os"]:not([data-enhanced])) {
   --gs-ink: #000;
   --gs-paper: #fff;
   --gs-line: #000;
@@ -2725,7 +2780,7 @@ gessi-window[draggable] .gs-window-titlebar {
   line-height: 1.18;
 }
 
-[data-gs-style="classic-os"] .gs-desktop {
+:is([data-gs-style="classic-os"] .gs-desktop, gessi-desktop[theme="classic-os"]:not([data-enhanced]):not([pattern])) {
   background:
     linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%) 0 0 / 4px 4px,
     linear-gradient(45deg, #000 25%, #fff 25%, #fff 75%, #000 75%) 2px 2px / 4px 4px;

@@ -98,6 +98,7 @@ a { color: inherit; }
 .docs-topnav { display: flex; gap: 1rem; justify-content: end; }
 .docs-topnav a, .docs-sidebar a, .docs-toc a { text-decoration: none; }
 .docs-topnav a { color: var(--docs-muted); font-size: .8rem; }
+.docs-nav-playground { color: var(--docs-ink) !important; font-weight: 650; }
 .docs-topnav a:hover, .docs-sidebar a:hover, .docs-toc a:hover { color: var(--docs-ink); }
 .docs-nav-toggle, .docs-mobile-search-trigger, .docs-mobile-search { display: none; }
 
@@ -171,8 +172,8 @@ a { color: inherit; }
 .docs-icon-library { border: 1px solid var(--docs-line); border-radius: .45rem; display: grid; gap: 1.5rem; grid-template-columns: minmax(12rem, .8fr) minmax(16rem, 1.2fr); margin: 1.5rem 0; padding: 1.25rem; }
 .docs-icon-library h3 { font-size: 1rem; margin: 0; }
 .docs-icon-library p { color: var(--docs-muted); font-size: .82rem; line-height: 1.55; margin: .55rem 0 0; }
-.docs-icon-gallery { display: grid; gap: .5rem; grid-template-columns: repeat(5, 1fr); }
-.docs-icon-gallery img { background: #f4f4f5; border: 1px solid var(--docs-line); height: 100%; image-rendering: pixelated; max-width: 100%; padding: .45rem; width: 100%; }
+.docs-icon-gallery { align-content: start; display: grid; gap: .5rem; grid-template-columns: repeat(5, 1fr); }
+.docs-icon-gallery img { aspect-ratio: 1; background: #f4f4f5; border: 1px solid var(--docs-line); height: auto; image-rendering: pixelated; max-width: 100%; object-fit: contain; padding: .45rem; width: 100%; }
 
 .docs-hero {
   align-items: center;
@@ -215,7 +216,7 @@ a { color: inherit; }
 .docs-value-strip span + span { border-left: 1px solid var(--docs-line); }
 .docs-value-strip strong { color: var(--docs-ink); font-family: var(--gessi-mono); font-size: 1rem; font-weight: 600; }
 
-.docs-start-paths { display: grid; gap: .75rem; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 1.5rem 0 0; }
+.docs-start-paths { display: grid; gap: .75rem; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 1.5rem 0 0; }
 .docs-start-paths a { border: 1px solid var(--docs-line); border-radius: .4rem; display: grid; min-width: 0; padding: 1rem; text-decoration: none; transition: border-color 140ms ease, background 140ms ease; }
 .docs-start-paths a:hover { background: #fafafa; border-color: var(--docs-strong-line); }
 .docs-start-paths span { color: var(--docs-blue); font-family: var(--gessi-mono); font-size: .65rem; text-transform: uppercase; }
@@ -300,6 +301,9 @@ a { color: inherit; }
 .docs-playground-preview gessi-desktop { min-height: 20rem; width: min(100%, 36rem); }
 .docs-playground-preview .gs-window { max-width: 100%; }
 .docs-playground > .docs-code { border: 0; border-radius: 0; border-top: 1px solid var(--docs-line); }
+.docs-playground-topbar { grid-template-columns: 1fr auto; }
+.docs-standalone-main { margin: 0 auto; max-width: 76rem; padding: 0 clamp(1.25rem, 5vw, 5rem); }
+.docs-standalone-main .docs-section { border-bottom: 0; min-height: calc(100vh - 4rem); padding-top: clamp(3rem, 8vw, 7rem); }
 
 .docs-checklist { display: grid; gap: 0; list-style: none; padding: 0; }
 .docs-checklist li { border-top: 1px solid var(--docs-line); font-size: .92rem; padding: .9rem .75rem  .9rem 2.35rem; position: relative; }
@@ -368,7 +372,7 @@ a { color: inherit; }
   .docs-value-strip { grid-template-columns: repeat(2, 1fr); margin-inline: -1.1rem; }
   .docs-value-strip span:nth-child(3) { border-left: 0; }
   .docs-value-strip span:nth-child(n + 3) { border-top: 1px solid var(--docs-line); }
-  .docs-start-paths, .docs-two-column, .docs-theme-preview, .docs-component-table, .docs-api-grid, .docs-effect-grid, .docs-showcase, .docs-use-cases, .docs-ai-intro, .docs-playground-layout { grid-template-columns: 1fr; }
+  .docs-start-paths, .docs-two-column, .docs-theme-preview, .docs-component-table, .docs-api-grid, .docs-effect-grid, .docs-showcase, .docs-use-cases, .docs-ai-intro, .docs-playground-layout, .docs-icon-library { grid-template-columns: 1fr; }
   .docs-playground-controls { border-bottom: 1px solid var(--docs-line); border-right: 0; }
   .docs-recipe-list > article, .docs-patterns > article { gap: 1rem; grid-template-columns: 1fr; }
   .docs-recipe-copy { position: static; }
