@@ -53,8 +53,5 @@ jobs:
       - name: Run component browser matrix
         run: npm run test:components
 
-      - name: Run first-paint FOUC coverage
-        run: npm run test:fouc
-
       - name: Run Chromium visual baselines
         run: npm run test:visual

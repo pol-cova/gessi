@@ -76,20 +76,18 @@ class GessiDesktop extends HTMLElementBase {
       ["pattern-color", "--gs-pattern-color"],
       ["pattern-size", "--gs-pattern-size"],
     ]) {
-      if (this.hasAttribute(attribute) && !this.style.getPropertyValue(property)) {
+      if (this.hasAttribute(attribute)) {
         this.style.setProperty(property, this.getAttribute(attribute));
       }
     }
-    if (!this.hasAttribute("background") && !this.style.getPropertyValue("--gs-desktop-color")) {
+    if (!this.hasAttribute("background")) {
       this.style.setProperty(
         "--gs-desktop-color",
         theme === "classic-os" ? "#fff" : "#9edbd2",
       );
     }
-    if (!this.dataset.pattern) {
-      this.dataset.pattern = this.getAttribute("pattern")
-        || (theme === "classic-os" ? "checker" : "dots");
-    }
+    this.dataset.pattern = this.getAttribute("pattern")
+      || (theme === "classic-os" ? "checker" : "dots");
 
     const customMenu = this.querySelector(':scope > [slot="menu"]');
     const menu = this.getAttribute("menu");

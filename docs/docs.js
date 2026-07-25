@@ -70,7 +70,6 @@ document.querySelectorAll("[data-doc-tabs]").forEach((tabs) => {
 const sidebar = document.querySelector("[data-sidebar]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const setSidebarOpen = (open) => {
-  if (!sidebar) return;
   sidebar.toggleAttribute("data-open", open);
   navToggle?.setAttribute("aria-expanded", String(open));
 };
@@ -78,12 +77,11 @@ const setSidebarOpen = (open) => {
 navToggle?.addEventListener("click", () => {
   setSidebarOpen(!sidebar.hasAttribute("data-open"));
 });
-sidebar?.querySelectorAll("a").forEach((link) => {
+sidebar.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => setSidebarOpen(false));
 });
 
 const filterNavigation = (query) => {
-  if (!sidebar) return;
   const term = normalize(query);
   sidebar.querySelectorAll("a").forEach((link) => {
     const target = document.querySelector(link.hash);

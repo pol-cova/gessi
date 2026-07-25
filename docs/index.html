@@ -27,7 +27,6 @@
       </button>
 
       <nav class="docs-topnav" aria-label="Project links">
-        <a class="docs-nav-playground" href="./playground.html">Playground</a>
         <a href="./reference.md">Plain docs</a>
         <a href="./llms.txt">llms.txt</a>
         <a href="https://www.npmjs.com/package/@pol-cova/gessi">npm</a>
@@ -58,31 +57,41 @@
 
         <nav aria-label="Documentation">
           <section>
-            <strong>Getting started</strong>
-            <a href="#quick-start">Plain HTML</a>
-            <a href="#installation">npm and SSR</a>
-            <a href="#recipes">Common tasks</a>
-            <a href="#showcase">Examples</a>
+            <strong>Start</strong>
+            <a href="#overview">Overview</a>
+            <a href="#quick-start">Quick start</a>
+            <a href="#installation">Installation</a>
+            <a href="#recipes">How do I…?</a>
+            <a href="#use-cases">Use cases</a>
+            <a href="#ai">Build with AI</a>
           </section>
           <section>
-            <strong>Build an interface</strong>
+            <strong>Design system</strong>
             <a href="#themes">Themes</a>
-            <a href="#desktop">Desktop and windows</a>
-            <a href="#navigation">Navigation and system UI</a>
-            <a href="#markdown">Content and forms</a>
+            <a href="#custom-themes">Custom themes</a>
+            <a href="#css-primitives">CSS primitives</a>
+            <a href="#markdown">Markdown content</a>
+            <a href="#responsive">Responsive behavior</a>
+          </section>
+          <section>
+            <strong>OS components</strong>
+            <a href="#desktop">Desktop</a>
+            <a href="#windows">Windows and dialogs</a>
+            <a href="#playground">Playground</a>
+            <a href="#navigation">Menus and navigation</a>
+            <a href="#system-ui">System UI</a>
           </section>
           <section>
             <strong>Media</strong>
-            <a href="#images">Images and effects</a>
-            <a href="#maps">Maps</a>
+            <a href="#images">Image effects</a>
+            <a href="#maps">Maps and markers</a>
             <a href="#carousel">Carousel</a>
           </section>
           <section>
             <strong>Reference</strong>
-            <a href="./playground.html">Component playground</a>
-            <a href="#frameworks">Frameworks</a>
-            <a href="#keyboard">Accessibility and keyboard</a>
-            <a href="#ai">AI implementation</a>
+            <a href="#frameworks">Static frameworks</a>
+            <a href="#keyboard">Keyboard controls</a>
+            <a href="#showcase">Showcase</a>
           </section>
         </nav>
       </aside>
@@ -92,14 +101,14 @@
           <div>
             <h1>Expressive HTML, ready to paste.</h1>
             <p>
-              A dependency-free CSS and Web Component kit for expressive HTML.
-              Start with a page, then add a desktop, window, media effect, or
-              another component only when it helps.
+              Gessi gives plain HTML a small set of dependency-free styles and
+              native Web Components: windows, desktops, panels, Markdown
+              documents, media effects, maps, and retro visual systems.
             </p>
             <div class="docs-actions">
-              <a class="docs-primary-action" href="#quick-start">Start with HTML</a>
-              <a href="#installation">Use npm</a>
-              <a href="#showcase">Examples</a>
+              <a class="docs-primary-action" href="#quick-start">Copy the quick start</a>
+              <a href="./reference.md">Read plain docs</a>
+              <a href="./llms.txt">Open llms.txt</a>
             </div>
           </div>
 
@@ -155,21 +164,26 @@
           <span><strong>20+</strong> semantic components</span>
         </section>
 
-        <nav class="docs-start-paths" aria-label="Choose how to start with Gessi">
+        <nav class="docs-start-paths" aria-label="Start with Gessi">
           <a href="#quick-start">
-            <span>01 · No build step</span>
+            <span>Use a CDN</span>
             <strong>Plain HTML</strong>
-            <small>Copy one script, then use components in any HTML file.</small>
+            <small>Copy one script and start writing components.</small>
           </a>
           <a href="#installation">
-            <span>02 · Existing project</span>
+            <span>Use a package</span>
             <strong>npm and bundlers</strong>
-            <small>Import CSS and the SSR-safe component module.</small>
+            <small>Import the CSS and SSR-safe component module.</small>
           </a>
-          <a href="#recipes">
-            <span>03 · Specific outcome</span>
-            <strong>Common tasks</strong>
-            <small>Start from a small recipe for themes, dialogs, media, or Markdown.</small>
+          <a href="#ai">
+            <span>Use a coding agent</span>
+            <strong>AI implementation prompt</strong>
+            <small>Give an agent the right architecture and accessibility constraints.</small>
+          </a>
+          <a href="./reference.md">
+            <span>Read without chrome</span>
+            <strong>Plain reference</strong>
+            <small>Linear Markdown docs for humans, agents, and search.</small>
           </a>
         </nav>
 
@@ -178,7 +192,7 @@
             <span>01</span>
             <div>
               <h2>Quick start with plain HTML</h2>
-              <p>Paste this into an HTML file. It loads Gessi’s CSS and registers the components. Then use normal HTML inside them.</p>
+              <p>Paste one module script into any HTML file. It loads the stylesheet and registers every component.</p>
             </div>
           </header>
 
@@ -203,7 +217,7 @@
             <span>02</span>
             <div>
               <h2>Install from npm</h2>
-              <p>Use this when your project already has a build step. The CSS and component import stay separate so SSR remains safe.</p>
+              <p>Use the same CSS and native custom elements from a bundler or static-site layout.</p>
             </div>
           </header>
 
@@ -222,9 +236,9 @@ import "@pol-cova/gessi/components";</code></pre>
           </div>
 
           <div class="docs-entry-points">
-            <h3>Which import should I use?</h3>
+            <h3>Choose the entry point for your project</h3>
             <div class="docs-component-table">
-              <div><code>@pol-cova/gessi</code><span>Package default; stylesheet</span></div>
+              <div><code>@pol-cova/gessi</code><span>Package default; component module</span></div>
               <div><code>@pol-cova/gessi/css</code><span>Styles only; no registration</span></div>
               <div><code>@pol-cova/gessi/components</code><span>SSR-safe component registration</span></div>
               <div><code>@pol-cova/gessi/gessi.js</code><span>CDN entry; loads sibling CSS</span></div>
@@ -961,9 +975,58 @@ desktop.addEventListener("gs-layout-change", () =&gt; {
           </div>
         </section>
 
-        <section class="docs-section" id="maps" data-doc-page="world map markers locations responsive">
+        <section class="docs-section" id="playground" data-doc-page="playground generator window desktop media snippet">
           <header class="docs-heading">
             <span>14</span>
+            <div>
+              <h2>Component playground</h2>
+              <p>Configure a window, media frame, or desktop in the browser. The preview and copy-ready HTML update together.</p>
+            </div>
+          </header>
+
+          <div class="docs-playground" data-playground>
+            <div class="docs-playground-tabs" role="tablist" aria-label="Playground component">
+              <button type="button" role="tab" aria-selected="true" data-playground-tab="window">Window</button>
+              <button type="button" role="tab" aria-selected="false" data-playground-tab="media">Media</button>
+              <button type="button" role="tab" aria-selected="false" data-playground-tab="desktop">Desktop</button>
+            </div>
+            <div class="docs-playground-layout">
+              <form class="docs-playground-controls" data-playground-controls>
+                <div data-playground-panel="window">
+                  <label>Title <input name="window-title" value="Projects"></label>
+                  <label>Width <select name="window-width"><option value="22rem">Compact</option><option value="32rem" selected>Standard</option><option value="42rem">Wide</option></select></label>
+                  <label><input name="window-minimizable" type="checkbox" checked> Include minimize control</label>
+                  <label><input name="window-zoomable" type="checkbox" checked> Include zoom control</label>
+                  <label>Theme <select name="window-theme"><option value="classic-os">Classic OS</option><option value="old-tech">Old-tech</option><option value="neo">Neo</option></select></label>
+                </div>
+                <div data-playground-panel="media" hidden>
+                  <label>Effect <select name="media-effect"><option value="pixel">Pixel</option><option value="dither">Dither</option><option value="blueprint scanlines">Blueprint + scanlines</option><option value="glitch crt">Glitch + CRT</option></select></label>
+                  <label>Frame <select name="media-frame"><option value="window">Window</option><option value="polaroid">Polaroid</option><option value="none">None</option></select></label>
+                  <label>Aspect ratio <select name="media-aspect"><option value="1 / 1">Square</option><option value="4 / 3" selected>4:3</option><option value="16 / 9">16:9</option></select></label>
+                  <label>Fit <select name="media-fit"><option value="cover">Cover</option><option value="contain">Contain</option></select></label>
+                  <label>Theme <select name="media-theme"><option value="classic-os">Classic OS</option><option value="old-tech">Old-tech</option><option value="neo">Neo</option></select></label>
+                </div>
+                <div data-playground-panel="desktop" hidden>
+                  <label>Pattern <select name="desktop-pattern"><option value="grid">Grid</option><option value="dots">Dots</option><option value="checker">Checker</option></select></label>
+                  <label>Background <input name="desktop-background" type="color" value="#c5c9ea"></label>
+                  <label>Pattern color <input name="desktop-pattern-color" type="color" value="#5a5f92"></label>
+                  <label>Menu <input name="desktop-menu" value="⌘ Gessi,File,Edit,Help"></label>
+                  <label><input name="desktop-icons" type="checkbox" checked> Include desktop icons</label>
+                  <label>Theme <select name="desktop-theme"><option value="classic-os">Classic OS</option><option value="old-tech">Old-tech</option><option value="neo">Neo</option></select></label>
+                </div>
+              </form>
+              <div class="docs-playground-preview" data-playground-preview></div>
+            </div>
+            <div class="docs-code" data-playground-code data-copy-block>
+              <button type="button" data-copy>Copy</button>
+              <pre><code></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="docs-section" id="maps" data-doc-page="world map markers locations responsive">
+          <header class="docs-heading">
+            <span>15</span>
             <div>
               <h2>Maps and markers</h2>
               <p>Use a real image or inline SVG, then place accessible percentage-based markers above it.</p>
@@ -987,7 +1050,7 @@ desktop.addEventListener("gs-layout-change", () =&gt; {
 
         <section class="docs-section" id="carousel" data-doc-page="carousel slides autoplay keyboard">
           <header class="docs-heading">
-            <span>15</span>
+            <span>16</span>
             <div>
               <h2>Carousel</h2>
               <p>Every direct child becomes a keyboard-accessible slide with generated themed controls.</p>
@@ -1006,7 +1069,7 @@ desktop.addEventListener("gs-layout-change", () =&gt; {
 
         <section class="docs-section" id="responsive" data-doc-page="responsive mobile breakpoint layout">
           <header class="docs-heading">
-            <span>16</span>
+            <span>17</span>
             <div>
               <h2>Responsive by default</h2>
               <p>Below 720px, desktop composition becomes readable document flow without separate mobile markup.</p>
@@ -1023,7 +1086,7 @@ desktop.addEventListener("gs-layout-change", () =&gt; {
 
         <section class="docs-section" id="frameworks" data-doc-page="astro eleventy hugo jekyll next server rendered static frameworks">
           <header class="docs-heading">
-            <span>17</span>
+            <span>18</span>
             <div>
               <h2>Static framework recipes</h2>
               <p>Native custom elements work in Astro, Eleventy, Hugo, Jekyll, server templates, and framework applications.</p>
@@ -1058,7 +1121,7 @@ node_modules/@pol-cova/gessi/dist/gessi.js</code></pre>
 
         <section class="docs-section" id="keyboard" data-doc-page="keyboard shortcuts accessibility focus">
           <header class="docs-heading">
-            <span>18</span>
+            <span>19</span>
             <div>
               <h2>Keyboard controls</h2>
               <p>Desktop interactions include keyboard window management and accessible dialog behavior.</p>
@@ -1075,7 +1138,7 @@ node_modules/@pol-cova/gessi/dist/gessi.js</code></pre>
 
         <section class="docs-section" id="showcase" data-doc-page="showcase demos examples product classic media">
           <header class="docs-heading">
-            <span>19</span>
+            <span>20</span>
             <div>
               <h2>Complete environments</h2>
               <p>Open the examples, inspect the source, and use them as starting points.</p>

@@ -4,13 +4,6 @@ Gessi is a dependency-free CSS and native Web Component library for expressive H
 
 Use this page when you want the docs without the visual interface. It is also the best source to give an AI coding agent.
 
-## First Project
-
-1. Choose the CDN snippet for a plain HTML page, or the package imports for an existing app.
-2. Start with ordinary semantic HTML. Add a Gessi component when you need reusable chrome or interaction.
-3. Use a theme only around the part of the page that should adopt it.
-4. Use the full docs for examples and the component playground.
-
 ## Install
 
 Plain HTML:
@@ -31,37 +24,10 @@ import "@pol-cova/gessi/components";
 
 ## Entry Points
 
-- `@pol-cova/gessi`: package default stylesheet.
+- `@pol-cova/gessi`: package default, component module.
 - `@pol-cova/gessi/css`: stylesheet only.
 - `@pol-cova/gessi/components`: SSR-safe component registration.
 - `@pol-cova/gessi/gessi.js`: CDN entry that loads sibling CSS.
-
-## SSR and First Paint
-
-For server-rendered pages, link the stylesheet in `<head>` so custom elements have fallback styling before JavaScript runs:
-
-```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@pol-cova/gessi/dist/gessi.css"
-  data-gessi-styles
->
-<gessi-desktop theme="classic-os" background="#98d7c2" pattern="noise">
-  <gessi-window title="hello.html" active>...</gessi-window>
-</gessi-desktop>
-<script
-  type="module"
-  src="https://cdn.jsdelivr.net/npm/@pol-cova/gessi/dist/gessi.js"
-></script>
-```
-
-Gessi applies declared `theme`, `background`, `pattern`, `pattern-color`, and `pattern-size` attributes in CSS before enhancement, so the first paint matches the final desktop theme instead of the library's pink page defaults.
-
-When `<gessi-desktop>` is present, the page background falls back to neutral dark chrome. You can still override `body` styles for full-viewport desktops.
-
-Typed CSS `attr()` maps custom `background` values on first paint in current Chromium and Safari. Very old browsers still get the correct theme defaults and patterns, but custom background colors may wait until `gessi.js` runs.
-
-See `examples/ssr-desktop.html` for a minimal fixture.
 
 ## Design Rules
 
@@ -149,19 +115,6 @@ Restore events:
 
 - `gs-layout-restore-before`: cancelable.
 - `gs-layout-restore-after`: fires after restore.
-
-## Bundled Pixel Icons
-
-Fifteen original 32px SVG icons ship under `@pol-cova/gessi/icons/*`.
-Use them with `gessi-icon` for a labeled desktop icon, or with a native `img`
-when the image itself conveys information.
-
-```html
-<gessi-icon
-  src="./node_modules/@pol-cova/gessi/dist/icons/folder.svg"
-  label="Projects"
-></gessi-icon>
-```
 
 ## Markdown Content
 
@@ -268,6 +221,8 @@ Use `effect` on `gessi-media` or `gessi-map`.
 
 Effects compose by space-separated name.
 
+## Static Frameworks
+
 ## Accessibility support matrix
 
 Gessi's interactive components are covered in Chromium, Firefox, and WebKit.
@@ -277,8 +232,6 @@ Use current versions of VoiceOver with Safari, NVDA with Firefox or Chrome, and
 JAWS with Chrome or Edge for manual screen-reader verification. Screen readers
 and browsers update independently, so test the combinations used by your
 audience before releasing an application.
-
-## Static Frameworks
 
 Astro:
 
