@@ -1,6 +1,6 @@
 {
   "name": "@pol-cova/gessi",
-  "version": "0.0.4",
+  "version": "0.5.0",
   "description": "CSS and Web Components for expressive HTML and retro desktop interfaces.",
   "type": "module",
   "style": "dist/gessi.css",
@@ -30,6 +30,7 @@
     "check": "node scripts/verify.mjs",
     "test:a11y": "playwright test tests/accessibility.spec.js",
     "test:components": "playwright test tests/components.spec.js",
+    "test:fouc": "playwright test tests/fouc.spec.js",
     "test:visual": "playwright test tests/visual.spec.js",
     "docs:build": "node scripts/build-docs.mjs",
     "pack:check": "npm run build && npm pack --dry-run",

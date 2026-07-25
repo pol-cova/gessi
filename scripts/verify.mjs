@@ -38,6 +38,8 @@ const requiredExamples = [
   "examples/classic-os.html",
   "examples/media-os.html",
   "examples/custom-theme.html",
+  "examples/ssr-desktop.html",
+  "examples/ssr-desktop-nojs.html",
   "examples/assets/world-map.png",
   "docs/index.html",
   "docs/CNAME",
